@@ -1,0 +1,138 @@
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/appsettings.Development.json
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/appsettings.json
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/Properties/launchSettings.json
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/wav/file_example_WAV_1MG.wav
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/GrpcAudioStreaming.Server
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.deps.json
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.runtimeconfig.json
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.runtimeconfig.dev.json
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.dll
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.pdb
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/Google.Protobuf.dll
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/Grpc.AspNetCore.Server.dll
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/Grpc.Core.dll
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/Grpc.Core.Api.dll
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/Grpc.Net.Common.dll
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/NAudio.dll
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/runtimes/linux/native/libgrpc_csharp_ext.x64.so
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/runtimes/linux/native/libgrpc_csharp_ext.x86.so
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/runtimes/osx/native/libgrpc_csharp_ext.x64.dylib
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/runtimes/osx/native/libgrpc_csharp_ext.x86.dylib
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/runtimes/win/native/grpc_csharp_ext.x64.dll
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/runtimes/win/native/grpc_csharp_ext.x86.dll
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/GrpcAudioStreaming.Proto.dll
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/bin/Debug/netcoreapp3.0/GrpcAudioStreaming.Proto.pdb
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/obj/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.csprojAssemblyReference.cache
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/obj/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.csproj.CoreCompileInputs.cache
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/obj/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.MvcApplicationPartsAssemblyInfo.cache
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/obj/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.AssemblyInfoInputs.cache
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/obj/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.AssemblyInfo.cs
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/obj/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.RazorTargetAssemblyInfo.cache
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/obj/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.csproj.CopyComplete
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/obj/Debug/netcoreapp3.0/staticwebassets/GrpcAudioStreaming.Server.StaticWebAssets.Manifest.cache
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/obj/Debug/netcoreapp3.0/staticwebassets/GrpcAudioStreaming.Server.StaticWebAssets.xml
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/obj/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.dll
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/obj/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.pdb
+/home/irasema/Documentos/EJEMPLO ReproductorMusica Csharp GRPC/GrpcAudioStreaming/GrpcAudioStreaming.Server/obj/Debug/netcoreapp3.0/GrpcAudioStreaming.Server.genruntimeconfig.cache
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.AssemblyInfoInputs.cache
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.AssemblyInfo.cs
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.csproj.CoreCompileInputs.cache
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\appsettings.Development.json
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\appsettings.json
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\wav\file_example_WAV_1MG.wav
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.exe
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.deps.json
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.runtimeconfig.json
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.runtimeconfig.dev.json
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.dll
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Google.Protobuf.dll
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Grpc.AspNetCore.Server.dll
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Grpc.Core.dll
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Grpc.Core.Api.dll
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Grpc.Net.Common.dll
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\NAudio.dll
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\linux\native\libgrpc_csharp_ext.x64.so
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\linux\native\libgrpc_csharp_ext.x86.so
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\osx\native\libgrpc_csharp_ext.x64.dylib
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\osx\native\libgrpc_csharp_ext.x86.dylib
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\win\native\grpc_csharp_ext.x64.dll
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\win\native\grpc_csharp_ext.x86.dll
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.RazorTargetAssemblyInfo.cache
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.csproj.CopyComplete
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\staticwebassets\GrpcAudioStreaming.Server.StaticWebAssets.Manifest.cache
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\staticwebassets\GrpcAudioStreaming.Server.StaticWebAssets.xml
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.genruntimeconfig.cache
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.pdb
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.csprojAssemblyReference.cache
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.dll
+C:\Users\Saul\Desktop\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.pdb
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\appsettings.Development.json
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\appsettings.json
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\wav\file_example_WAV_1MG.wav
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.exe
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.deps.json
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.runtimeconfig.json
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.runtimeconfig.dev.json
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.dll
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.pdb
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Google.Protobuf.dll
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Grpc.AspNetCore.Server.dll
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Grpc.Core.dll
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Grpc.Core.Api.dll
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Grpc.Net.Common.dll
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\NAudio.dll
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\linux\native\libgrpc_csharp_ext.x64.so
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\linux\native\libgrpc_csharp_ext.x86.so
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\osx\native\libgrpc_csharp_ext.x64.dylib
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\osx\native\libgrpc_csharp_ext.x86.dylib
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\win\native\grpc_csharp_ext.x64.dll
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\win\native\grpc_csharp_ext.x86.dll
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.AssemblyInfoInputs.cache
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.AssemblyInfo.cs
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.csproj.CoreCompileInputs.cache
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.RazorTargetAssemblyInfo.cache
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.csproj.CopyComplete
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\staticwebassets\GrpcAudioStreaming.Server.StaticWebAssets.Manifest.cache
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\staticwebassets\GrpcAudioStreaming.Server.StaticWebAssets.xml
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.dll
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.pdb
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.genruntimeconfig.cache
+C:\Users\survi\OneDrive - Universidad Veracruzana\Desarrollo en Red\Ejemplo Strem grpc audio\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.csprojAssemblyReference.cache
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\appsettings.Development.json
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\appsettings.json
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\wav\file_example_WAV_1MG.wav
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.exe
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.deps.json
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.runtimeconfig.json
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.runtimeconfig.dev.json
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.dll
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.pdb
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Google.Protobuf.dll
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Grpc.AspNetCore.Server.dll
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Grpc.Core.dll
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Grpc.Core.Api.dll
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\Grpc.Net.Common.dll
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\NAudio.dll
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\linux\native\libgrpc_csharp_ext.x64.so
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\linux\native\libgrpc_csharp_ext.x86.so
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\osx\native\libgrpc_csharp_ext.x64.dylib
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\osx\native\libgrpc_csharp_ext.x86.dylib
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\win\native\grpc_csharp_ext.x64.dll
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\bin\Debug\netcoreapp3.0\runtimes\win\native\grpc_csharp_ext.x86.dll
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.csprojAssemblyReference.cache
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.csproj.CoreCompileInputs.cache
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.AssemblyInfoInputs.cache
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.AssemblyInfo.cs
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.RazorTargetAssemblyInfo.cache
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.csproj.CopyComplete
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\staticwebassets\GrpcAudioStreaming.Server.StaticWebAssets.Manifest.cache
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\staticwebassets\GrpcAudioStreaming.Server.StaticWebAssets.xml
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.dll
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.pdb
+C:\Users\BETO\Documents\OCTAVO SEMESTRE\DESARROLLO DE APLICACIONES\GRPC\GrpcAudioStreaming\GrpcAudioStreaming.Server\obj\Debug\netcoreapp3.0\GrpcAudioStreaming.Server.genruntimeconfig.cache

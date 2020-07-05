@@ -1,0 +1,3 @@
+obj\Debug\netcoreapp3.0/AudioStreaming.cs \
+obj\Debug\netcoreapp3.0/AudioStreamingGrpc.cs: C:/Users/BETO/.nuget/packages/grpc.tools/2.29.0/build/native/include/google/protobuf/empty.proto\
+ audioStreaming.proto

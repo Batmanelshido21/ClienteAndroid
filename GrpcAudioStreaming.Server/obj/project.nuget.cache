@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "qWWSBHKDoGPAQ0QAJRCT/8QIfZ9XgloigSpZUXnviAAsTiWQKgYjSVozQNYHDnx1xRJmZQ7WtyvV9jNHsgXJFA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\BETO\\Documents\\OCTAVO SEMESTRE\\DESARROLLO DE APLICACIONES\\GRPC\\GrpcAudioStreaming\\GrpcAudioStreaming.Server\\GrpcAudioStreaming.Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\BETO\\.nuget\\packages\\google.protobuf\\3.12.2\\google.protobuf.3.12.2.nupkg.sha512",
+    "C:\\Users\\BETO\\.nuget\\packages\\grpc.aspnetcore.server\\0.2.23-pre2\\grpc.aspnetcore.server.0.2.23-pre2.nupkg.sha512",
+    "C:\\Users\\BETO\\.nuget\\packages\\grpc.core\\2.23.0\\grpc.core.2.23.0.nupkg.sha512",
+    "C:\\Users\\BETO\\.nuget\\packages\\grpc.core.api\\2.23.0\\grpc.core.api.2.23.0.nupkg.sha512",
+    "C:\\Users\\BETO\\.nuget\\packages\\grpc.net.common\\0.2.23-pre2\\grpc.net.common.0.2.23-pre2.nupkg.sha512",
+    "C:\\Users\\BETO\\.nuget\\packages\\grpc.tools\\2.29.0\\grpc.tools.2.29.0.nupkg.sha512",
+    "C:\\Users\\BETO\\.nuget\\packages\\naudio\\1.9.0\\naudio.1.9.0.nupkg.sha512",
+    "C:\\Users\\BETO\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+  ],
+  "logs": []
+}
