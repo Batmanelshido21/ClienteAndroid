@@ -8,24 +8,18 @@ import android.util.Log;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 
@@ -36,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Button botonRegistrar;
     private Button botonIngresar;
     private Window window;
+    private static IServicioLogin API_SERVICE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +46,14 @@ public class MainActivity extends AppCompatActivity {
         window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#494949")));
         window.setNavigationBarColor(Color.parseColor("#43a074"));
 
+
     }
 
     public void ingresar(View view){
         new Login().execute();
-        Intent siguiente = new Intent(this,MenuPrincipal.class);
-        startActivity(siguiente);
+        //cuentas();
+        //Intent siguiente = new Intent(this,MenuPrincipal.class);
+        //startActivity(siguiente);
     }
 
     public void registrarse(View view){
@@ -64,21 +61,57 @@ public class MainActivity extends AppCompatActivity {
         startActivity(siguiente);
     }
 
-    public static class Login extends AsyncTask<Void,Void,Void> {
+    public void cuentas(){
+        // Creamos un interceptor y le indicamos el log level a usar
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        @Override
-        protected Void doInBackground(Void... voids) {
-            final String url="https://localhost:5001/";
-            Retrofit retrofit = new Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build();
-            IServicioLogin servicioLogin = retrofit.create(IServicioLogin.class);
-            Call<List<ResponseService>> response = servicioLogin.Get();
+        // Asociamos el interceptor a las peticiones
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(logging);
+
+        String baseUrl = "http://192.168.0.15:5001/";
+
+        if (API_SERVICE == null) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(httpClient.build()) // <-- usamos el log level
+                    .build();
+            API_SERVICE = retrofit.create(IServicioLogin.class);
+
+            Call<List<ResponseService>> response = API_SERVICE.Get();
+
             try {
                 for(ResponseService user : response.execute().body()) {
-                    Log.e("Respuesta ", user.getNombreUsuario() + " " + user.getCorreoElectronico());
+                    Log.e("Respuesta",user.getNombreUsuario());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+    }
+
+    public static class Login extends AsyncTask<Void,Void,Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            final String url="http://192.168.0.15:5001/";
+            //127.0.0.1
+            //192.168.0.15
+            Retrofit retrofit = new Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build();
+            IServicioLogin servicioLogin = retrofit.create(IServicioLogin.class);
+            Call<List<ResponseService>> response = servicioLogin.Get();
+
+            try {
+                for(ResponseService user : response.execute().body()) {
+                    Log.e("Respuesta",user.getNombreUsuario());
+                }
+            } catch (IOException e) {
+               Log.e("Error",e.getMessage());
+            }
+
             return null;
         }
     }

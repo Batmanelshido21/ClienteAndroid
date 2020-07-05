@@ -14,6 +14,6 @@ namespace ApiRestCuenta.DBContext
         }
 
         public DbSet<Cuenta> Cuenta { get; set; }
-        public DbSet<Album> Album { get; set; }
+       
     }
 }

@@ -6,7 +6,8 @@ import retrofit2.http.GET;
 import java.util.List;
 
 public interface IServicioLogin {
-    @GET("api/CuentaController")
+    String API_ROUTE="api/cuenta";
+    @GET(API_ROUTE)
     Call<List<ResponseService>> Get();
 
 }
