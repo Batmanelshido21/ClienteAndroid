@@ -19,6 +19,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private Button botonRegistrar;
     private Button botonIngresar;
     private Window window;
-    private static IServicioLogin API_SERVICE;
+    ResponseService user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +52,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ingresar(View view){
-        new Login().execute();
-        //cuentas();
-        //Intent siguiente = new Intent(this,MenuPrincipal.class);
-        //startActivity(siguiente);
+        getPosts();
+
     }
 
     public void registrarse(View view){
@@ -61,58 +61,41 @@ public class MainActivity extends AppCompatActivity {
         startActivity(siguiente);
     }
 
-    public void cuentas(){
-        // Creamos un interceptor y le indicamos el log level a usar
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+    private void getPosts() {
+        String name= String.valueOf(nombreUsuario.getText());
+        String cont= String.valueOf(contraseña.getText());
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.15:5001/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        IServicioLogin postService = retrofit.create(IServicioLogin.class);
+        Call<ResponseService> call = postService.GetLogin(name,cont);
 
-        // Asociamos el interceptor a las peticiones
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.addInterceptor(logging);
-
-        String baseUrl = "http://192.168.0.15:5001/";
-
-        if (API_SERVICE == null) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(baseUrl)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(httpClient.build()) // <-- usamos el log level
-                    .build();
-            API_SERVICE = retrofit.create(IServicioLogin.class);
-
-            Call<List<ResponseService>> response = API_SERVICE.Get();
-
-            try {
-                for(ResponseService user : response.execute().body()) {
-                    Log.e("Respuesta",user.getNombreUsuario());
+        call.enqueue(new Callback<ResponseService>() {
+            @Override
+            public void onResponse(Call<ResponseService> call, Response<ResponseService> response) {
+                try {
+                   user = response.body();
+                   Log.e("Respuesta",user.getNombreUsuario());
+                    Log.e("Respuesta",user.getCorreoElectronico());
+                    menuPrincipal(user.getTipo());
+                } catch (Exception e) {
+                    Log.e("Error",e.getMessage());
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-        }
-
+            @Override
+            public void onFailure(Call<ResponseService> call, Throwable t) {
+            }
+        });
     }
 
-    public static class Login extends AsyncTask<Void,Void,Void> {
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            final String url="http://192.168.0.15:5001/";
-            //127.0.0.1
-            //192.168.0.15
-            Retrofit retrofit = new Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build();
-            IServicioLogin servicioLogin = retrofit.create(IServicioLogin.class);
-            Call<List<ResponseService>> response = servicioLogin.Get();
-
-            try {
-                for(ResponseService user : response.execute().body()) {
-                    Log.e("Respuesta",user.getNombreUsuario());
-                }
-            } catch (IOException e) {
-               Log.e("Error",e.getMessage());
-            }
-
-            return null;
+    public void menuPrincipal(String tipo){
+        if(tipo.equalsIgnoreCase("creador")){
+            Intent siguiente = new Intent(this,InicioCreadorContenido.class);
+            startActivity(siguiente);
+        }else{
+            Intent siguiente = new Intent(this,MenuPrincipal.class);
+            startActivity(siguiente);
         }
     }
 }

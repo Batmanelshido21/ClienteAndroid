@@ -28,10 +28,10 @@ namespace ApiRestCuenta.Controllers
         }
 
         // GET api/<controller>/5
-        [HttpGet("{usuario}/{contrasenia}")]
-        public Cuenta Get(string nombreUsuario, string contrasenia)
+        [HttpGet("login")]
+        public Cuenta GetLogin(string nombreUsuario, string contraseña)
         {
-            var cuenta = context.Cuenta.Where(x => x.nombreUsuario == nombreUsuario && x.contraseña == contrasenia).FirstOrDefault();
+            var cuenta = context.Cuenta.Where(x => x.nombreUsuario == nombreUsuario && x.contraseña == contraseña).FirstOrDefault();
 
             return cuenta;
         }
