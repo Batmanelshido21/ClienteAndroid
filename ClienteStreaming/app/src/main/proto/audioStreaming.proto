@@ -1,0 +1,29 @@
+syntax = "proto3";
+option csharp_namespace = "GrpcAudioStreaming";
+
+option java_package = "com.example.streaming";
+option java_multiple_files = true;
+
+service AudioStream {
+  rpc ElegirCancion (Cancion) returns (AudioFormat);
+  rpc ObtenerStreamDeCancion (Cancion) returns (stream AudioSample);
+}
+
+message AudioSample {
+  string Timestamp = 1;
+  bytes Data = 2;
+}
+
+message AudioFormat {
+  int32 AverageBytesPerSecond = 1;
+  int32 BitsPerSample = 2;
+  int32 BlockAlign = 3;
+  int32 Channels = 4;
+  int32 ExtraSize = 5;
+  int32 SampleRate = 6;
+  string Encoding = 7;
+}
+
+message Cancion {
+	string nombre = 1;
+}
