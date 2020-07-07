@@ -46,8 +46,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ingresar(View view){
-        getPosts();
-
+        //getLogin();
+        String tipo="usuario";
+        menuPrincipal(tipo);
     }
 
     public void registrarse(View view){
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(siguiente);
     }
 
-    private void getPosts() {
+    private void getLogin() {
         String name= String.valueOf(nombreUsuario.getText());
         String cont= String.valueOf(contraseña.getText());
         Retrofit retrofit = new Retrofit.Builder()

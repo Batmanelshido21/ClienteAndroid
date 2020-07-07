@@ -52,37 +52,47 @@ namespace ApiRestCuenta.Controllers
             return context.Cancion.ToList();
         }
         // POST api/<controller>
-        [HttpPost]
-        public ActionResult Post([FromBody]Cuenta cuenta)
+        [HttpPost("registroCuenta")]
+        public Cuenta Post(int id,string nombreUsuario,string correoElectronico,string contraseña,string tipo)
         {
+            Cuenta cuenta= new Cuenta();
+            cuenta.nombreUsuario=nombreUsuario;
+            cuenta.id=id;
+            cuenta.correoElectronico=correoElectronico;
+            cuenta.contraseña=contraseña;
+            cuenta.tipo=tipo;
             try
             {
                 context.Cuenta.Add(cuenta);
                 context.SaveChanges();
 
-                return Ok();
+                return cuenta;
             }
             catch (Exception)
             {
-                return BadRequest();
+                return cuenta;
             }
         }
 
 
         [HttpPost("registroArtista")]
-         public ActionResult PostArtista([FromBody]Artista artista)
+        public Artista PostArtista(int id, string nombreArtistico, string descripcion)
         {
+            Artista artista = new Artista();
+            artista.id=id;
+            artista.nombreArtistico=nombreArtistico;
+            artista.descripcion=descripcion;
             try
             {
                 
                 context.Artista.Add(artista);
                 context.SaveChanges();
 
-                return Ok();
+                return artista;
             }
             catch (Exception)
             {
-                return BadRequest();
+                return artista;
             }
         }
 

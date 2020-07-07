@@ -22,7 +22,7 @@
             android:layout_height="42dp"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/editText" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/correoElectronicoInput" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.148"
             app:layout_constraintVertical_bias="0.378"/>
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/editText2"
+            android:id="@+id/nombreUsuarioInput"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.151"/>
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editText5"
+            android:id="@+id/contraseñaConfirmacion"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.151" app:layout_constraintVertical_bias="0.755"/>
@@ -80,18 +80,10 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editText4"
+            android:id="@+id/contrasenaInput"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.151" app:layout_constraintVertical_bias="0.623"/>
-    <RadioButton
-            android:text="creadorContenido"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/radioButton"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.132" app:layout_constraintVertical_bias="0.819"
-            android:textColor="#FFFFFF"/>
     <TextView
             android:text="Contraseña"
             android:layout_width="wrap_content"
@@ -123,4 +115,12 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.129" app:layout_constraintVertical_bias="0.163"
             android:onClick="cargarFoto"/>
+    <CheckBox
+            android:text="Creador de contenido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/tipo"
+            android:textColor="#FFFFFF" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.122"
+            app:layout_constraintVertical_bias="0.836"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

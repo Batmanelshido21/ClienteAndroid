@@ -50,4 +50,9 @@ public class InicioCreadorContenido extends AppCompatActivity {
         Intent siguiente = new Intent(this,ListaReproduccion.class);
         startActivity(siguiente);
     }
+
+    public void volverLogin(View view){
+        Intent siguiente = new Intent(this,MainActivity.class);
+        startActivity(siguiente);
+    }
 }

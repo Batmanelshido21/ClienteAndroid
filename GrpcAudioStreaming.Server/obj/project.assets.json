@@ -317,26 +317,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\BETO\\.nuget\\packages\\": {}
+    "/home/javier/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\BETO\\Documents\\OCTAVO SEMESTRE\\DESARROLLO DE APLICACIONES\\GRPC\\GrpcAudioStreaming\\GrpcAudioStreaming.Server\\GrpcAudioStreaming.Server.csproj",
+      "projectUniqueName": "/home/javier/Documentos/RepositoriosGithub/ClienteAndroid/ClienteAndroid/GrpcAudioStreaming.Server/GrpcAudioStreaming.Server.csproj",
       "projectName": "GrpcAudioStreaming.Server",
-      "projectPath": "C:\\Users\\BETO\\Documents\\OCTAVO SEMESTRE\\DESARROLLO DE APLICACIONES\\GRPC\\GrpcAudioStreaming\\GrpcAudioStreaming.Server\\GrpcAudioStreaming.Server.csproj",
-      "packagesPath": "C:\\Users\\BETO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\BETO\\Documents\\OCTAVO SEMESTRE\\DESARROLLO DE APLICACIONES\\GRPC\\GrpcAudioStreaming\\GrpcAudioStreaming.Server\\obj\\",
+      "projectPath": "/home/javier/Documentos/RepositoriosGithub/ClienteAndroid/ClienteAndroid/GrpcAudioStreaming.Server/GrpcAudioStreaming.Server.csproj",
+      "packagesPath": "/home/javier/.nuget/packages/",
+      "outputPath": "/home/javier/Documentos/RepositoriosGithub/ClienteAndroid/ClienteAndroid/GrpcAudioStreaming.Server/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\BETO\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/javier/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -386,6 +384,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.0.1, 3.0.1]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[3.0.3, 3.0.3]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[3.0.0, 3.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -394,7 +406,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
       }
     }
   }
