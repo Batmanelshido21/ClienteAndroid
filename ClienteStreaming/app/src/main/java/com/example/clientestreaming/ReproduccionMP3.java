@@ -94,7 +94,6 @@ public class ReproduccionMP3 extends AppCompatActivity {
         stub.obtenerStreamDeCancion(cancion, new StreamObserver<AudioSample>() {
             @Override
             public void onNext(AudioSample value) {
-                value.getData().toByteArray();
                 ByteArrayMediaDataSource cancion = new ByteArrayMediaDataSource(value.getData().toByteArray());
                 mp.setDataSource(cancion);
                 mp.start();

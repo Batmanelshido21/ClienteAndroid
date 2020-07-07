@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using ApiRestCuenta.DBContext;
 using ApiRestCuenta.Entidad;
 using Microsoft.AspNetCore.Mvc;
+using System.Media;
+using System.IO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,6 +16,7 @@ namespace ApiRestCuenta.Controllers
     public class CuentaController : Controller
     {
         private readonly Context context;
+       
 
         public CuentaController(Context context)
         {
@@ -35,6 +38,24 @@ namespace ApiRestCuenta.Controllers
 
             return cuenta;
         }
+
+        [HttpGet("reproducirAudio")]
+        public byte[] obtenerCancion(){
+        byte[] cancion =null;
+        byte[] buffer =null;
+        int longitud;
+        var PathfileName = string.Empty;
+        PathfileName = "/home/javier/Documentos/8voSemestre/Desarrollo de aplicaciones/dale.mp3";
+        using (var fs = new FileStream(PathfileName, FileMode.Open, FileAccess.Read))
+        {
+            buffer = new byte[fs.Length];
+            fs.Read(buffer, 0, (int)fs.Length);
+            longitud = (int)fs.Length;
+        }
+        cancion=buffer;
+        return cancion;
+        }
+
 
         [HttpGet("listaAlbum")]
          public IEnumerable<Album> GetAlbums()

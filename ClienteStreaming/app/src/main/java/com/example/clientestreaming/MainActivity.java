@@ -3,6 +3,7 @@ package com.example.clientestreaming;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.Window;
@@ -17,6 +18,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Button botonIngresar;
     private Window window;
     ResponseService user;
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +46,51 @@ public class MainActivity extends AppCompatActivity {
         window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#494949")));
         window.setNavigationBarColor(Color.parseColor("#43a074"));
 
-
     }
 
     public void ingresar(View view){
         //getLogin();
-        String tipo="usuario";
-        menuPrincipal(tipo);
+        reproducir();
+        //String tipo="usuario";
+        //menuPrincipal(tipo);
     }
 
     public void registrarse(View view){
         Intent siguiente = new Intent(this,RegistroUsuario.class);
         startActivity(siguiente);
+    }
+
+    public void reproducir(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.15:5001/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        System.out.println("Desues de la direccion");
+        IServicioLogin postService = retrofit.create(IServicioLogin.class);
+        Call<byte[]> call = postService.obtenerCancion();
+        System.out.println("Despues de post");
+        call.enqueue(new Callback<byte[]>() {
+            @Override
+            public void onResponse(Call<byte[]> call, Response<byte[]> response) {
+                Log.e("Respuesta","hey1");
+                try {
+                    Log.e("Respuesta","hey1");
+                    byte[] arreglo=response.body();
+                    ByteArrayMediaDataSource prueba = new ByteArrayMediaDataSource(arreglo);
+                    mp.setDataSource(prueba);
+                    mp.prepare();
+                    mp.start();
+
+                } catch (Exception e) {
+                    Log.e("Error",e.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<byte[]> call, Throwable t) {
+            }
+        });
+
+
     }
 
     private void getLogin() {
@@ -71,8 +108,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseService> call, Response<ResponseService> response) {
                 try {
                    user = response.body();
-                   Log.e("Respuesta",user.getNombreUsuario());
-                    Log.e("Respuesta",user.getCorreoElectronico());
+
                     menuPrincipal(user.getTipo());
                 } catch (Exception e) {
                     Log.e("Error",e.getMessage());
