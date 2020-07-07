@@ -124,37 +124,45 @@ namespace ApiRestCuenta.Controllers
 
 
         [HttpPost("registroAlbum")]
-        public ActionResult PostAlbum([FromBody]Album album)
+        public Album PostAlbum(int id, string nombre, string fecha, string descripcion)
         {
+            Album album = new Album();
+            album.id=id;
+            album.nombre=nombre;
+            album.fecha=fecha;
+            album.descripcion=descripcion;
             try
             {
-                
                 context.Album.Add(album);
                 context.SaveChanges();
 
-                return Ok();
+                return album;
             }
             catch (Exception)
             {
-                return BadRequest();
+                return album;
             }
         }
 
 
         [HttpPost("registroCancion")]
-        public ActionResult PostCancion([FromBody]Cancion cancion)
+        public Cancion PostCancion(int id, string nombre, string genero, string duracion)
         {
+            Cancion cancion = new Cancion();
+            cancion.id=id;
+            cancion.nombre=nombre;
+            cancion.genero=genero;
+            cancion.duracion=duracion;
             try
             {
-                
                 context.Cancion.Add(cancion);
                 context.SaveChanges();
 
-                return Ok();
+                return cancion;
             }
             catch (Exception)
             {
-                return BadRequest();
+                return cancion;
             }
         }
         // PUT api/<controller>/5

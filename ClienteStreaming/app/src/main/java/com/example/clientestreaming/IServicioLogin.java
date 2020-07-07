@@ -34,4 +34,20 @@ public interface IServicioLogin {
     @GET("api/cuenta/reproducirAudio")
     Call<Audio> obtenerCancion(
             @Query("nombreCancion")String nombre);
+
+    @POST("api/cuenta/registroAlbum")
+    Call<Album> PostAlbum(
+            @Query("id") int id,
+            @Query("nombre") String nombre,
+            @Query("fecha") String fecha,
+            @Query("descripcion") String descripcion
+    );
+
+    @POST("api/cuenta/registroCancion")
+    Call<Cancion> PostCancion(
+            @Query("id") int id,
+            @Query("nombre") String nombre,
+            @Query("genero") String genero,
+            @Query("duracion") String duracion
+    );
 }

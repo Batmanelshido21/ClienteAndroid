@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/editText11"
+            android:id="@+id/nombreCancionInput"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.267" app:layout_constraintVertical_bias="0.263"/>
@@ -54,14 +54,14 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/editText12"
+            android:id="@+id/generoCancionInput"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.267" app:layout_constraintVertical_bias="0.424"/>
     <TextView
             android:text="Duración"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView21"
+            android:layout_height="wrap_content" android:id="@+id/duracionCancionInut"
             android:textColor="#FFFFFF"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
@@ -72,24 +72,26 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/editText13"
+            android:id="@+id/duracionInput"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.267" app:layout_constraintVertical_bias="0.596"/>
     <Button
             android:text="Agregar otra canción"
             android:layout_width="143dp"
-            android:layout_height="51dp" android:id="@+id/button"
+            android:layout_height="51dp" android:id="@+id/botonAgregarCancion"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.138" app:layout_constraintVertical_bias="0.85"/>
+            app:layout_constraintHorizontal_bias="0.138" app:layout_constraintVertical_bias="0.85"
+            android:onClick="agregarNuevaCancion"/>
     <Button
             android:text="Terminar proceso"
             android:layout_width="153dp"
-            android:layout_height="55dp" android:id="@+id/button3"
+            android:layout_height="55dp" android:id="@+id/botonTerminarProceso"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.828" app:layout_constraintVertical_bias="0.85"/>
+            app:layout_constraintHorizontal_bias="0.828" app:layout_constraintVertical_bias="0.85"
+            android:onClick="menuPrincipal"/>
     <Button
             android:text="Seleccionar canción"
             android:layout_width="wrap_content"
