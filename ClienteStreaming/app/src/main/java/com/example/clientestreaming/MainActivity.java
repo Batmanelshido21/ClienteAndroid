@@ -53,61 +53,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ingresar(View view){
-        //getLogin();
-        reproducir();
-        //String tipo="usuario";
-        //menuPrincipal(tipo);
+        getLogin();
     }
 
     public void registrarse(View view){
         Intent siguiente = new Intent(this,RegistroUsuario.class);
         startActivity(siguiente);
-    }
-
-    public void reproducir(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.15:5001/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        Call<Audio> call = postService.obtenerCancion();
-        System.out.println("antes del error");
-        call.enqueue(new Callback<Audio>() {
-            @Override
-            public void onResponse(Call<Audio> call, Response<Audio> response) {
-                try {
-                    audio= response.body();
-                    byte[] byteArrray = Base64.getDecoder().decode(audio.getCancion().getBytes());
-                    File tempMp3 = File.createTempFile("kurchina", "mp3", getCacheDir());
-                    tempMp3.deleteOnExit();
-                    FileOutputStream fos = new FileOutputStream(tempMp3);
-                    fos.write(byteArrray);
-                    fos.close();
-
-                    // resetting mediaplayer instance to evade problems
-                    mp.reset();
-
-                    // In case you run into issues with threading consider new instance like:
-                    // MediaPlayer mediaPlayer = new MediaPlayer();
-
-                    // Tried passing path directly, but kept getting
-                    // "Prepare failed.: status=0x1"
-                    // so using file descriptor instead
-                    FileInputStream fis = new FileInputStream(tempMp3);
-                    mp.setDataSource(fis.getFD());
-
-                    mp.prepare();
-                    mp.start();
-
-                } catch (Exception e) {
-                    Log.e("Error",e.getMessage());
-                }
-            }
-            @Override
-            public void onFailure(Call<Audio> call, Throwable t) {
-                Log.e("Resuesta", "Falló");
-            }
-        });
     }
 
     private void getLogin() {

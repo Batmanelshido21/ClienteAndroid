@@ -32,5 +32,6 @@ public interface IServicioLogin {
     );
 
     @GET("api/cuenta/reproducirAudio")
-    Call<Audio> obtenerCancion();
+    Call<Audio> obtenerCancion(
+            @Query("nombreCancion")String nombre);
 }
