@@ -18,8 +18,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Base64;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Window window;
     ResponseService user;
     MediaPlayer mp;
+    Audio audio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#43a074")));
         window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#494949")));
         window.setNavigationBarColor(Color.parseColor("#43a074"));
-
+        mp = new MediaPlayer();
+        //mp = MediaPlayer.create(this,R.raw.hail);
     }
 
     public void ingresar(View view){
@@ -65,19 +69,33 @@ public class MainActivity extends AppCompatActivity {
                 .baseUrl("http://192.168.0.15:5001/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        System.out.println("Desues de la direccion");
         IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        Call<byte[]> call = postService.obtenerCancion();
-        System.out.println("Despues de post");
-        call.enqueue(new Callback<byte[]>() {
+        Call<Audio> call = postService.obtenerCancion();
+        System.out.println("antes del error");
+        call.enqueue(new Callback<Audio>() {
             @Override
-            public void onResponse(Call<byte[]> call, Response<byte[]> response) {
-                Log.e("Respuesta","hey1");
+            public void onResponse(Call<Audio> call, Response<Audio> response) {
                 try {
-                    Log.e("Respuesta","hey1");
-                    byte[] arreglo=response.body();
-                    ByteArrayMediaDataSource prueba = new ByteArrayMediaDataSource(arreglo);
-                    mp.setDataSource(prueba);
+                    audio= response.body();
+                    byte[] byteArrray = Base64.getDecoder().decode(audio.getCancion().getBytes());
+                    File tempMp3 = File.createTempFile("kurchina", "mp3", getCacheDir());
+                    tempMp3.deleteOnExit();
+                    FileOutputStream fos = new FileOutputStream(tempMp3);
+                    fos.write(byteArrray);
+                    fos.close();
+
+                    // resetting mediaplayer instance to evade problems
+                    mp.reset();
+
+                    // In case you run into issues with threading consider new instance like:
+                    // MediaPlayer mediaPlayer = new MediaPlayer();
+
+                    // Tried passing path directly, but kept getting
+                    // "Prepare failed.: status=0x1"
+                    // so using file descriptor instead
+                    FileInputStream fis = new FileInputStream(tempMp3);
+                    mp.setDataSource(fis.getFD());
+
                     mp.prepare();
                     mp.start();
 
@@ -86,11 +104,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             @Override
-            public void onFailure(Call<byte[]> call, Throwable t) {
+            public void onFailure(Call<Audio> call, Throwable t) {
+                Log.e("Resuesta", "Falló");
             }
         });
-
-
     }
 
     private void getLogin() {

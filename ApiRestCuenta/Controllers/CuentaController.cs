@@ -40,12 +40,15 @@ namespace ApiRestCuenta.Controllers
         }
 
         [HttpGet("reproducirAudio")]
-        public byte[] obtenerCancion(){
-        byte[] cancion =null;
+        public Audio obtenerCancion(){
+        Console.WriteLine("es e id de la canción");
+        Console.WriteLine(" son los bytes de la cancion");
+        Audio audio = new Audio();
+        byte[] cancion;
         byte[] buffer =null;
         int longitud;
         var PathfileName = string.Empty;
-        PathfileName = "/home/javier/Documentos/8voSemestre/Desarrollo de aplicaciones/dale.mp3";
+        PathfileName = "/home/javier/Descargas/gta-san-andreas-f.mp3";
         using (var fs = new FileStream(PathfileName, FileMode.Open, FileAccess.Read))
         {
             buffer = new byte[fs.Length];
@@ -53,7 +56,12 @@ namespace ApiRestCuenta.Controllers
             longitud = (int)fs.Length;
         }
         cancion=buffer;
-        return cancion;
+        audio.id=1;
+        string vuelta = Convert.ToBase64String(cancion);
+        audio.cancion=vuelta;
+        Console.WriteLine(audio.id+ " es e id de la canción");
+        Console.WriteLine(buffer+" son los bytes de la cancion");
+        return audio;
         }
 
 

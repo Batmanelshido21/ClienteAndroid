@@ -32,5 +32,5 @@ public interface IServicioLogin {
     );
 
     @GET("api/cuenta/reproducirAudio")
-    Call<byte[]> obtenerCancion();
+    Call<Audio> obtenerCancion();
 }

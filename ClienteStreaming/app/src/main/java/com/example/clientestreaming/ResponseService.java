@@ -11,6 +11,7 @@ public class ResponseService {
     private String contraseA;
     private String tipo;
 
+
     public Integer getId() {
         return id;
     }
