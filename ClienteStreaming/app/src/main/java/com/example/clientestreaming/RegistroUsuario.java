@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,7 @@ public class RegistroUsuario extends AppCompatActivity {
     TextView contra;
     CheckBox tipo;
     TextView contra2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +55,25 @@ public class RegistroUsuario extends AppCompatActivity {
     }
 
     public void Continuar(View view){
-        String password=String.valueOf(contra.getText());
-        String password2=String.valueOf(contra2.getText());
-        if(password.equals(password2)){
-            registroCuenta();
+
+        String contraseña =String.valueOf(contra.getText());
+        String cadenaDeConfirmacionParaContraseña =String.valueOf(contra2.getText());
+        String nombreDeUsuario = String.valueOf(nombreU.getText());
+        String email =String.valueOf(correo.getText());
+        String tipoDeUsuario;
+
+        if(validarDatos(email, nombreDeUsuario, contraseña, cadenaDeConfirmacionParaContraseña)){
+            if(tipo.isChecked()){
+                tipoDeUsuario="creador";
+            }else{
+                tipoDeUsuario="usuario";
+            }
+            registroCuenta(email, nombreDeUsuario, contraseña, cadenaDeConfirmacionParaContraseña, tipoDeUsuario);
+        }else{
+
+            final Toast tag = Toast.makeText(this, "No se pueden dejar campos vacios, las contraseñas deben coincidir, no se pueden llenar campos con espacios y ningún campo debe tener la letra 'ñ'",Toast.LENGTH_LONG);
+            tag.show();
+            new CountDownTimer(5000, 1000) { public void onTick(long millisUntilFinished) {tag.show();} public void onFinish() {tag.show();} }.start();
         }
     }
 
@@ -66,23 +83,16 @@ public class RegistroUsuario extends AppCompatActivity {
         startActivityForResult(foto.createChooser(foto,"Seleccione la aplicación"),10);
     }
 
-    public void registroCuenta(){
-        String name= String.valueOf(nombreU.getText());
-        String password=String.valueOf(contra.getText());
-        String email=String.valueOf(correo.getText());
-        String tipo2;
-        if(tipo.isChecked()){
-            tipo2="creador";
-        }else{
-            tipo2="usuario";
-        }
+    public void registroCuenta(String correo, String nombreUsuario, String contraseña, String cadenaDeConfirmacionParaContraseña, String tipoDeUsuario){
+
         int id = (int) (Math.random() * 10000) + 1;
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.15:5001/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        Call<ResponseService> call = postService.Post(id,name,email,password,tipo2);
+        Call<ResponseService> call = postService.Post(id, nombreUsuario, correo, contraseña, tipoDeUsuario);
 
         call.enqueue(new Callback<ResponseService>() {
             @Override
@@ -120,4 +130,20 @@ public class RegistroUsuario extends AppCompatActivity {
         }
     }
 
+    public boolean validarDatos(String correo, String nombreUsuario, String contraseña, String cadenaDeConfirmacionParaContraseña){
+
+        String email = correo.replaceAll("\\s", "");
+        String userName = nombreUsuario.replaceAll("\\s", "");
+        String password = contraseña.replaceAll("\\s", "");
+        String passwordConfirm = cadenaDeConfirmacionParaContraseña.replaceAll("\\s", "");
+
+        if((!userName.isEmpty() && !email.isEmpty() && !password.isEmpty() && !passwordConfirm.isEmpty())
+                && (contraseña.equals(cadenaDeConfirmacionParaContraseña))
+                && (!contraseña.contains(" "))
+                && (!contraseña.contains("ñ") && !nombreUsuario.contains("ñ") && !correo.contains("ñ"))){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

@@ -7,12 +7,14 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +39,7 @@ public class RegistroCanciones extends AppCompatActivity {
     private TextView nombre;
     private TextView genero;
     private TextView duracion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,35 +79,46 @@ public class RegistroCanciones extends AppCompatActivity {
     }
 
     public void registrarCancion(){
-        String name2= String.valueOf(nombre.getText());
-        String genero1= String.valueOf(genero.getText());
-        String durac= String.valueOf(duracion.getText());
-        int id = (int) (Math.random() * 10000) + 1;
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.15:5001/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        Call<Cancion> call = postService.PostCancion(id,name2,genero1,durac);
 
-        call.enqueue(new Callback<Cancion>() {
-            @Override
-            public void onResponse(Call<Cancion> call, Response<Cancion> response) {
-                try {
-                    cancion = response.body();
-                    Log.e("Respuesta", cancion.getNombre());
-                    nombre.setText("");
-                    genero.setText("");
-                    duracion.setText("");
-                } catch (Exception e) {
-                    Log.e("Error",e.getMessage());
+        String nombreDeCancion = String.valueOf(nombre.getText());
+        String generoMusical = String.valueOf(genero.getText());
+        String duracionDeCancion = String.valueOf(duracion.getText());
+
+        if(validarDatos(nombreDeCancion, generoMusical, duracionDeCancion)){
+
+            int id = (int) (Math.random() * 10000) + 1;
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://192.168.0.15:5001/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            IServicioLogin postService = retrofit.create(IServicioLogin.class);
+
+            Call<Cancion> call = postService.PostCancion(id, nombreDeCancion, generoMusical, duracionDeCancion);
+
+            call.enqueue(new Callback<Cancion>() {
+                @Override
+                public void onResponse(Call<Cancion> call, Response<Cancion> response) {
+                    try {
+                        cancion = response.body();
+                        Log.e("Respuesta", cancion.getNombre());
+                        nombre.setText("");
+                        genero.setText("");
+                        duracion.setText("");
+                    } catch (Exception e) {
+                        Log.e("Error",e.getMessage());
+                    }
                 }
-            }
-            @Override
-            public void onFailure(Call<Cancion> call, Throwable t) {
-            }
-        });
+                @Override
+                public void onFailure(Call<Cancion> call, Throwable t) {
+                }
+            });
+        }else{
+
+            Toast.makeText(this, "No se pueden dejar campos vacios, llenar con espacios y la duración debe ser un número decimal",Toast.LENGTH_LONG).show();
+        }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -119,5 +133,23 @@ public class RegistroCanciones extends AppCompatActivity {
             }
             mediaPlayer.start();
         }
+    }
+
+    public boolean validarDatos(String nombreCancion, String genero, String duracion){
+
+        String nombre = nombreCancion.replaceAll("\\s", "");
+        String generoMusical = genero.replaceAll("\\s", "");
+        String duracionDeCancion = genero.replaceAll("\\s", "");
+
+        if((!nombre.isEmpty() && !generoMusical.isEmpty() && !duracionDeCancion.isEmpty()) && (verificarSiEsNumero(duracion))){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean verificarSiEsNumero(String cadena) {
+
+        return cadena.matches("-?\\d+(\\.\\d+)?");
     }
 }

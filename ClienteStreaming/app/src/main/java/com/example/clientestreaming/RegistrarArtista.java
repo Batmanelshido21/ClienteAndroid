@@ -9,10 +9,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,33 +61,44 @@ public class RegistrarArtista extends AppCompatActivity {
     }
 
     public void registrarArtista(View view){
-        String name= String.valueOf(nombreA.getText());
-        String descripcion2=String.valueOf(descripcion.getText());
-        int id = (int) (Math.random() * 10000) + 1;
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.15:5001/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        Call<Artista> call = postService.PostArtista(id,name,descripcion2);
 
-        call.enqueue(new Callback<Artista>() {
-            @Override
-            public void onResponse(Call<Artista> call, Response<Artista> response) {
-                try {
-                    user = response.body();
-                    Log.e("Se registró correctamente ",user.getNombreArtistico());
-                    Log.e(" de correo electronico",user.getDescripcion());
-                    nombreA.setText("");
-                    descripcion.setText("");
-                } catch (Exception e) {
-                    Log.e("Error",e.getMessage());
+        String nombreArtista = String.valueOf(nombreA.getText());
+        String descripcionArtista = String.valueOf(descripcion.getText());
+
+        if(validarDatos(nombreArtista, descripcionArtista)){
+
+            int id = (int) (Math.random() * 10000) + 1;
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://192.168.0.15:5001/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            IServicioLogin postService = retrofit.create(IServicioLogin.class);
+            Call<Artista> call = postService.PostArtista(id, nombreArtista, descripcionArtista);
+
+            call.enqueue(new Callback<Artista>() {
+
+                @Override
+                public void onResponse(Call<Artista> call, Response<Artista> response) {
+                    try {
+                        user = response.body();
+                        Log.e("Se registró correctamente ",user.getNombreArtistico());
+                        Log.e(" de correo electronico",user.getDescripcion());
+                        nombreA.setText("");
+                        descripcion.setText("");
+                    } catch (Exception e) {
+                        Log.e("Error",e.getMessage());
+                    }
                 }
-            }
-            @Override
-            public void onFailure(Call<Artista> call, Throwable t) {
-            }
-        });
+                @Override
+                public void onFailure(Call<Artista> call, Throwable t) {
+                }
+            });
+
+        }else{
+
+            Toast.makeText(this, "No se pueden dejar campos vacios ni llenar con espacios",Toast.LENGTH_LONG).show();
+        }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -98,6 +106,18 @@ public class RegistrarArtista extends AppCompatActivity {
         if(resultCode==RESULT_OK){
             Uri path=data.getData();
             imagenArtista.setImageURI(path);
+        }
+    }
+
+    public boolean validarDatos(String nombreArtistico, String descripcion){
+
+        String nombre = nombreArtistico.replaceAll("\\s", "");
+        String descripcionArtista = descripcion.replaceAll("\\s", "");
+
+        if(!nombre.isEmpty() && !descripcionArtista.isEmpty()){
+            return true;
+        }else{
+            return false;
         }
     }
 }

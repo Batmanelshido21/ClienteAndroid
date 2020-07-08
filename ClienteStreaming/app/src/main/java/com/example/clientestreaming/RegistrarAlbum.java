@@ -8,10 +8,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +18,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class RegistrarAlbum extends AppCompatActivity {
 
@@ -33,6 +35,7 @@ public class RegistrarAlbum extends AppCompatActivity {
     private TextView nombre;
     private TextView fecha;
     private TextView descripcion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,33 +71,43 @@ public class RegistrarAlbum extends AppCompatActivity {
     }
 
     public void registroAlbum(){
-        String name= String.valueOf(nombre.getText());
-        String date= String.valueOf(fecha.getText());
-        String descrip= String.valueOf(descripcion.getText());
-        int id = (int) (Math.random() * 10000) + 1;
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.15:5001/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        Call<Album> call = postService.PostAlbum(id,name,date,descrip);
+
+        String nombreAlbum = String.valueOf(nombre.getText());
+        String fechaAlbum = String.valueOf(fecha.getText());
+        String descripcionAlbum = String.valueOf(descripcion.getText());
+
+        if(validarDatos(nombreAlbum, fechaAlbum, descripcionAlbum)){
+
+            int id = (int) (Math.random() * 10000) + 1;
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://192.168.0.15:5001/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            IServicioLogin postService = retrofit.create(IServicioLogin.class);
+
+            Call<Album> call = postService.PostAlbum(id, nombreAlbum, fechaAlbum, descripcionAlbum);
 
 
-        call.enqueue(new Callback<Album>() {
-            @Override
-            public void onResponse(Call<Album> call, Response<Album> response) {
-                try {
-                    album = response.body();
-                    Log.e("Respuesta", album.getNombre());
-                    registroCanciones();
-                } catch (Exception e) {
-                    Log.e("Error",e.getMessage());
+            call.enqueue(new Callback<Album>() {
+                @Override
+                public void onResponse(Call<Album> call, Response<Album> response) {
+                    try {
+                        album = response.body();
+                        Log.e("Respuesta", album.getNombre());
+                        registroCanciones();
+                    } catch (Exception e) {
+                        Log.e("Error",e.getMessage());
+                    }
                 }
-            }
-            @Override
-            public void onFailure(Call<Album> call, Throwable t) {
-            }
-        });
+                @Override
+                public void onFailure(Call<Album> call, Throwable t) {
+                }
+            });
+
+        }else {
+            Toast.makeText(this, "No se pueden dejar campos vacios ni llenar con espacios. La fecha debe tener el siguiente formato 12/04/2020",Toast.LENGTH_LONG).show();
+        }
     }
 
     public void registroCanciones(){
@@ -108,6 +121,35 @@ public class RegistrarAlbum extends AppCompatActivity {
         if(resultCode==RESULT_OK){
             Uri path=data.getData();
             imagenAlbum.setImageURI(path);
+        }
+    }
+
+    public boolean validarDatos(String nombre, String fecha, String descripcion){
+
+        String nombreAlbum = nombre.replaceAll("\\s", "");
+        String fechaAlbum = fecha.replaceAll("\\s", "");
+        String descripcionAlbum = descripcion.replaceAll("\\s", "");
+
+        DateFormat a = new SimpleDateFormat();
+
+        if(!nombreAlbum.isEmpty() && !fechaAlbum.isEmpty() && !descripcionAlbum.isEmpty() && validarFecha(fecha)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean validarFecha(String fecha){
+
+        try {
+
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            formatoFecha.setLenient(false);
+            formatoFecha.parse(fecha);
+            return true;
+
+        } catch (ParseException e) {
+            return false;
         }
     }
 }

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -62,30 +63,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getLogin() {
-        String name= String.valueOf(nombreUsuario.getText());
-        String cont= String.valueOf(contraseña.getText());
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.15:5001/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        Call<ResponseService> call = postService.GetLogin(name,cont);
 
-        call.enqueue(new Callback<ResponseService>() {
-            @Override
-            public void onResponse(Call<ResponseService> call, Response<ResponseService> response) {
-                try {
-                   user = response.body();
+        String nombreDeUsuario = String.valueOf(nombreUsuario.getText());
+        String contraseñaDeUsuario = String.valueOf(contraseña.getText());
 
-                    menuPrincipal(user.getTipo());
-                } catch (Exception e) {
-                    Log.e("Error",e.getMessage());
+        if(validarDatos(nombreDeUsuario, contraseñaDeUsuario)){
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://192.168.0.15:5001/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            IServicioLogin postService = retrofit.create(IServicioLogin.class);
+
+            Call<ResponseService> call = postService.GetLogin(nombreDeUsuario, contraseñaDeUsuario);
+
+            call.enqueue(new Callback<ResponseService>() {
+                @Override
+                public void onResponse(Call<ResponseService> call, Response<ResponseService> response) {
+                    try {
+                        user = response.body();
+
+                        menuPrincipal(user.getTipo());
+                    } catch (Exception e) {
+                        Log.e("Error",e.getMessage());
+                    }
                 }
-            }
-            @Override
-            public void onFailure(Call<ResponseService> call, Throwable t) {
-            }
-        });
+                @Override
+                public void onFailure(Call<ResponseService> call, Throwable t) {
+                }
+            });
+
+        }else{
+            Toast.makeText(this, "No se pueden dejar campos vacios ni llenar con espacios",Toast.LENGTH_LONG).show();
+        }
     }
 
     public void menuPrincipal(String tipo){
@@ -95,6 +105,18 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Intent siguiente = new Intent(this,MenuPrincipal.class);
             startActivity(siguiente);
+        }
+    }
+
+    public boolean validarDatos(String nombreUsuario, String contraseña){
+
+        String nombre = nombreUsuario.replaceAll("\\s", "");
+        String contraseñaDeUsuario = contraseña.replaceAll("\\s", "");
+
+        if(!nombre.isEmpty() && !contraseñaDeUsuario.isEmpty()){
+            return true;
+        }else{
+            return false;
         }
     }
 }
