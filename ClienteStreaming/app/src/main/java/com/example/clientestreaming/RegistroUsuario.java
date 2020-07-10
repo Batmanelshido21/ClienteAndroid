@@ -1,11 +1,13 @@
 package com.example.clientestreaming;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.CountDownTimer;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -19,6 +21,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.io.*;
+
 public class RegistroUsuario extends AppCompatActivity {
 
     private Window window;
@@ -30,6 +34,7 @@ public class RegistroUsuario extends AppCompatActivity {
     TextView contra;
     CheckBox tipo;
     TextView contra2;
+    String imagenBase64;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +73,7 @@ public class RegistroUsuario extends AppCompatActivity {
             }else{
                 tipoDeUsuario="usuario";
             }
-            registroCuenta(email, nombreDeUsuario, contraseña, cadenaDeConfirmacionParaContraseña, tipoDeUsuario);
+            registroCuenta(email, nombreDeUsuario, contraseña, tipoDeUsuario);
         }else{
 
             final Toast tag = Toast.makeText(this, "No se pueden dejar campos vacios, las contraseñas deben coincidir, no se pueden llenar campos con espacios y ningún campo debe tener la letra 'ñ'",Toast.LENGTH_LONG);
@@ -83,16 +88,21 @@ public class RegistroUsuario extends AppCompatActivity {
         startActivityForResult(foto.createChooser(foto,"Seleccione la aplicación"),10);
     }
 
-    public void registroCuenta(String correo, String nombreUsuario, String contraseña, String cadenaDeConfirmacionParaContraseña, String tipoDeUsuario){
+    public void registroCuenta(String correo, String nombreUsuario, String contraseña, String tipoDeUsuario){
 
         int id = (int) (Math.random() * 10000) + 1;
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.15:5001/")
+                .baseUrl("http://192.168.1.66:5001/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        Call<ResponseService> call = postService.Post(id, nombreUsuario, correo, contraseña, tipoDeUsuario);
+
+        Log.e("Contraseña", contraseña);
+
+        ResponseService cuentaUsuario = new ResponseService(id, nombreUsuario, correo, contraseña, tipoDeUsuario, imagenBase64);
+
+        Call<ResponseService> call = postService.Post(cuentaUsuario);
 
         call.enqueue(new Callback<ResponseService>() {
             @Override
@@ -122,11 +132,37 @@ public class RegistroUsuario extends AppCompatActivity {
         }
     }
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==RESULT_OK){
-            Uri path=data.getData();
+            Uri path = data.getData();
             imagen.setImageURI(path);
+            String s = obtenerRutaDeImagen(path);
+            ConvertirImagen(s);
+        }
+    }
+
+    public String obtenerRutaDeImagen(Uri uri) {
+
+        String[] projection = { MediaStore.Images.Media.DATA};
+        @SuppressWarnings("deprecation") Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor .getColumnIndexOrThrow(MediaStore.Images.Media.DATA); cursor.moveToFirst(); return cursor.getString(column_index);
+    }
+
+    public void ConvertirImagen(String ruta){
+        try {
+
+            File file = new File(ruta);
+            byte[] bytesArray = new byte[(int) file.length()];
+            FileInputStream archivo = new FileInputStream(file);
+            archivo.read(bytesArray);
+
+            imagenBase64 = Base64.encodeToString(bytesArray, Base64.DEFAULT);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

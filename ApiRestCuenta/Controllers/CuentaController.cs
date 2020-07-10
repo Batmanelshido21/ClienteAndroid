@@ -7,6 +7,9 @@ using ApiRestCuenta.Entidad;
 using Microsoft.AspNetCore.Mvc;
 using System.Media;
 using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
+using ApiRestCuenta.DAO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -46,13 +49,16 @@ namespace ApiRestCuenta.Controllers
         byte[] buffer =null;
         int longitud;
         var PathfileName = string.Empty;
+
         PathfileName = "/home/javier/Descargas/"+nombreCancion+".mp3";
+
         using (var fs = new FileStream(PathfileName, FileMode.Open, FileAccess.Read))
         {
             buffer = new byte[fs.Length];
             fs.Read(buffer, 0, (int)fs.Length);
             longitud = (int)fs.Length;
         }
+
         cancion=buffer;
         audio.id=1;
         string vuelta = Convert.ToBase64String(cancion);
@@ -79,38 +85,55 @@ namespace ApiRestCuenta.Controllers
         }
         // POST api/<controller>
         [HttpPost("registroCuenta")]
-        public Cuenta Post(int id,string nombreUsuario,string correoElectronico,string contraseña,string tipo)
+        public CuentaDAO Post([FromBody] CuentaDAO cuentaUsuario)
         {
+            Console.WriteLine("Contraseña: " + cuentaUsuario.contraseña);
+
             Cuenta cuenta= new Cuenta();
-            cuenta.nombreUsuario=nombreUsuario;
-            cuenta.id=id;
-            cuenta.correoElectronico=correoElectronico;
-            cuenta.contraseña=contraseña;
-            cuenta.tipo=tipo;
+        
+            cuenta.nombreUsuario= cuentaUsuario.nombreUsuario;
+            cuenta.id= cuentaUsuario.id;
+            cuenta.correoElectronico= cuentaUsuario.correoElectronico;
+            cuenta.contraseña= cuentaUsuario.contraseña;
+            cuenta.tipo= cuentaUsuario.tipo;
+
             try
             {
+                byte[] bytesDeImagen = Convert.FromBase64String(cuentaUsuario.imagen);
+
+                Image imagenAGuardar = (Bitmap)((new ImageConverter()).ConvertFrom(bytesDeImagen));
+                imagenAGuardar.Save("C:/Users/BETO/Documents/" + cuentaUsuario.nombreUsuario + ".jpg", ImageFormat.Jpeg);
+
                 context.Cuenta.Add(cuenta);
                 context.SaveChanges();
+                Console.WriteLine("Registro usuario");
 
-                return cuenta;
+                return cuentaUsuario;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return cuenta;
+                Console.WriteLine(e.GetBaseException());
+
+                return cuentaUsuario;
             }
         }
 
 
         [HttpPost("registroArtista")]
-        public Artista PostArtista(int id, string nombreArtistico, string descripcion)
+        public Artista PostArtista([FromBody] ArtistaDAO artistaDAO)
         {
             Artista artista = new Artista();
-            artista.id=id;
-            artista.nombreArtistico=nombreArtistico;
-            artista.descripcion=descripcion;
+            artista.id = artistaDAO.id;
+            artista.nombreArtistico = artistaDAO.nombreArtistico;
+            artista.descripcion = artistaDAO.descripcion;
+
             try
             {
-                
+                byte[] bytesDeImagen = Convert.FromBase64String(artistaDAO.imagen);
+
+                Image imagenAGuardar = (Bitmap)((new ImageConverter()).ConvertFrom(bytesDeImagen));
+                imagenAGuardar.Save("C:/Users/BETO/Documents/" + artistaDAO.nombreArtistico + ".jpg", ImageFormat.Jpeg);
+
                 context.Artista.Add(artista);
                 context.SaveChanges();
 
@@ -124,47 +147,60 @@ namespace ApiRestCuenta.Controllers
 
 
         [HttpPost("registroAlbum")]
-        public Album PostAlbum(int id, string nombre, string fecha, string descripcion)
+        public AlbumDAO PostAlbum([FromBody] AlbumDAO albumDao)
         {
             Album album = new Album();
-            album.id=id;
-            album.nombre=nombre;
-            album.fecha=fecha;
-            album.descripcion=descripcion;
+            album.id= albumDao.id;
+            album.nombre= albumDao.nombre;
+            album.fecha= albumDao.fecha;
+            album.descripcion= albumDao.descripcion;
             try
             {
+                byte[] bytesDeImagen = Convert.FromBase64String(albumDao.imagen);
+
+                Image imagenAGuardar = (Bitmap)((new ImageConverter()).ConvertFrom(bytesDeImagen));
+                imagenAGuardar.Save("C:/Users/BETO/Documents/" + albumDao.nombre + ".jpg", ImageFormat.Jpeg);
+
                 context.Album.Add(album);
                 context.SaveChanges();
 
-                return album;
+                return albumDao;
             }
             catch (Exception)
             {
-                return album;
+                return albumDao;
             }
         }
 
 
-        [HttpPost("registroCancion")]
-        public Cancion PostCancion(int id, string nombre, string genero, string duracion)
-        {
+       [HttpPost("registroCancion")]
+
+       public Cancion PostCancion([FromBody] CancionSubida cancionSubida)
+       {
             Cancion cancion = new Cancion();
-            cancion.id=id;
-            cancion.nombre=nombre;
-            cancion.genero=genero;
-            cancion.duracion=duracion;
+            cancion.id = cancionSubida.id;
+            cancion.nombre = cancionSubida.nombre;
+            cancion.genero = cancionSubida.genero;
+            cancion.duracion = cancionSubida.duracion;
+            
             try
             {
+                Console.WriteLine("Entró al try");
+                byte[] bytes = System.Convert.FromBase64String(cancionSubida.audio);
+                System.IO.File.WriteAllBytes("C:/Users/BETO/Documents/" + cancionSubida.nombre + ".mp3",bytes);
                 context.Cancion.Add(cancion);
                 context.SaveChanges();
 
                 return cancion;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
+                
                 return cancion;
             }
         }
+
         // PUT api/<controller>/5
         [HttpPut]
         public ActionResult Put([FromBody]Cuenta cuenta)

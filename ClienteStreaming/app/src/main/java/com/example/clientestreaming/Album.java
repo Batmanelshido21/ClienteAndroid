@@ -6,6 +6,15 @@ public class Album {
     private String nombre;
     private String fecha;
     private String descripcion;
+    private String imagen;
+
+    public Album(Integer id, String nombre, String fecha, String descripcion, String imagen) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+    }
 
     public Integer getId() {
         return id;
@@ -37,5 +46,13 @@ public class Album {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

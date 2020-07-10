@@ -1,14 +1,14 @@
 package com.example.clientestreaming;
 
-public class Cancion {
+public class CancionSubida {
 
-    private int id;
-    private String nombre;
-    private String genero;
-    private String duracion;
-    private String audio;
+    int id;
+    String nombre;
+    String genero;
+    String duracion;
+    String audio;
 
-    public Cancion(int id, String nombre, String genero, String duracion, String audio) {
+    public CancionSubida(int id, String nombre, String genero, String duracion, String audio) {
         this.id = id;
         this.nombre = nombre;
         this.genero = genero;
@@ -48,6 +48,7 @@ public class Cancion {
         this.duracion = duracion;
     }
 
+
     public String getAudio() {
         return audio;
     }
@@ -55,5 +56,4 @@ public class Cancion {
     public void setAudio(String audio) {
         this.audio = audio;
     }
-
 }

@@ -68,13 +68,6 @@
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.395"
             app:layout_constraintVertical_bias="0.725"/>
-    <ImageView
-            android:layout_width="144dp"
-            android:layout_height="136dp" app:srcCompat="@drawable/ic_launcher_foreground"
-            android:id="@+id/imagenArtista"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.779" app:layout_constraintVertical_bias="0.179"/>
     <Button
             android:text="Cargar imagen"
             android:layout_width="wrap_content"
@@ -83,4 +76,11 @@
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.166"
             app:layout_constraintVertical_bias="0.237" android:onClick="cargarImagen"/>
+    <ImageView
+            android:layout_width="141dp"
+            android:layout_height="120dp" app:srcCompat="@android:drawable/ic_menu_crop"
+            android:id="@+id/imagenArtista"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.818" app:layout_constraintVertical_bias="0.184"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

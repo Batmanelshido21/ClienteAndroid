@@ -1,11 +1,13 @@
 package com.example.clientestreaming;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -20,6 +22,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class RegistrarArtista extends AppCompatActivity {
 
     private Window window;
@@ -30,6 +37,8 @@ public class RegistrarArtista extends AppCompatActivity {
     private TextView nombreA;
     private TextView descripcion;
     Artista user;
+
+    private String imagenBase64;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -70,11 +79,14 @@ public class RegistrarArtista extends AppCompatActivity {
             int id = (int) (Math.random() * 10000) + 1;
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.15:5001/")
+                    .baseUrl("http://192.168.1.66:5001/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             IServicioLogin postService = retrofit.create(IServicioLogin.class);
-            Call<Artista> call = postService.PostArtista(id, nombreArtista, descripcionArtista);
+
+            Artista artista = new Artista(id, nombreArtista, descripcionArtista, imagenBase64);
+
+            Call<Artista> call = postService.PostArtista(artista);
 
             call.enqueue(new Callback<Artista>() {
 
@@ -104,8 +116,34 @@ public class RegistrarArtista extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==RESULT_OK){
-            Uri path=data.getData();
+            Uri path = data.getData();
             imagenArtista.setImageURI(path);
+            String s = obtenerRutaDeImagen(path);
+            ConvertirImagen(s);
+        }
+    }
+
+    public String obtenerRutaDeImagen(Uri uri) {
+
+        String[] projection = { MediaStore.Images.Media.DATA};
+        @SuppressWarnings("deprecation") Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor .getColumnIndexOrThrow(MediaStore.Images.Media.DATA); cursor.moveToFirst(); return cursor.getString(column_index);
+    }
+
+    public void ConvertirImagen(String ruta){
+        try {
+
+            File file = new File(ruta);
+            byte[] bytesArray = new byte[(int) file.length()];
+            FileInputStream archivo = new FileInputStream(file);
+            archivo.read(bytesArray);
+
+            imagenBase64 = Base64.encodeToString(bytesArray, Base64.DEFAULT);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

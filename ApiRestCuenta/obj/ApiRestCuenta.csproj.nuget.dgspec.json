@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/javier/Documentos/RepositoriosGithub/ClienteAndroid/ClienteAndroid/ApiRestCuenta/ApiRestCuenta.csproj": {}
+    "C:\\Users\\BETO\\Documents\\GitHub\\ClienteAndroid\\ApiRestCuenta\\ApiRestCuenta.csproj": {}
   },
   "projects": {
-    "/home/javier/Documentos/RepositoriosGithub/ClienteAndroid/ClienteAndroid/ApiRestCuenta/ApiRestCuenta.csproj": {
+    "C:\\Users\\BETO\\Documents\\GitHub\\ClienteAndroid\\ApiRestCuenta\\ApiRestCuenta.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/javier/Documentos/RepositoriosGithub/ClienteAndroid/ClienteAndroid/ApiRestCuenta/ApiRestCuenta.csproj",
+        "projectUniqueName": "C:\\Users\\BETO\\Documents\\GitHub\\ClienteAndroid\\ApiRestCuenta\\ApiRestCuenta.csproj",
         "projectName": "ApiRestCuenta",
-        "projectPath": "/home/javier/Documentos/RepositoriosGithub/ClienteAndroid/ClienteAndroid/ApiRestCuenta/ApiRestCuenta.csproj",
-        "packagesPath": "/home/javier/.nuget/packages/",
-        "outputPath": "/home/javier/Documentos/RepositoriosGithub/ClienteAndroid/ClienteAndroid/ApiRestCuenta/obj/",
+        "projectPath": "C:\\Users\\BETO\\Documents\\GitHub\\ClienteAndroid\\ApiRestCuenta\\ApiRestCuenta.csproj",
+        "packagesPath": "C:\\Users\\BETO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\BETO\\Documents\\GitHub\\ClienteAndroid\\ApiRestCuenta\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/javier/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\BETO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,6 +45,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.1.5, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[4.7.0, )"
             }
           },
           "imports": [
@@ -63,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

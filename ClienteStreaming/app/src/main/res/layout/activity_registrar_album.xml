@@ -31,13 +31,6 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.498" app:layout_constraintVertical_bias="0.874"
             android:onClick="canciones"/>
-    <ImageView
-            android:layout_width="131dp"
-            android:layout_height="130dp" app:srcCompat="@drawable/ic_launcher_foreground"
-            android:id="@+id/imagenAlbum"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.825" app:layout_constraintVertical_bias="0.128"/>
     <TextView
             android:text="Nombre"
             android:layout_width="wrap_content"
@@ -101,4 +94,12 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.184"
             app:layout_constraintVertical_bias="0.171" android:onClick="cargarImagen"/>
+    <ImageView
+            android:layout_width="131dp"
+            android:layout_height="111dp" app:srcCompat="@android:drawable/ic_menu_crop"
+            android:id="@+id/imagenAlbum"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.817"
+            app:layout_constraintVertical_bias="0.13"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,22 @@
 package com.example.clientestreaming;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ResponseService {
 
     private Integer id;
     private String nombreUsuario;
     private String correoElectronico;
-    private String contraseA;
+    private String contraseña;
     private String tipo;
+    private String imagen;
 
+    public ResponseService(Integer id, String nombreUsuario, String correoElectronico, String contraseña, String tipo, String imagen) {
+        this.id = id;
+        this.nombreUsuario = nombreUsuario;
+        this.correoElectronico = correoElectronico;
+        this.contraseña = contraseña;
+        this.tipo = tipo;
+        this.imagen = imagen;
+    }
 
     public Integer getId() {
         return id;
@@ -36,12 +42,12 @@ public class ResponseService {
         this.correoElectronico = correoElectronico;
     }
 
-    public String getContraseA() {
-        return contraseA;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setContraseA(String contraseA) {
-        this.contraseA = contraseA;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
     public String getTipo() {
@@ -50,5 +56,13 @@ public class ResponseService {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }

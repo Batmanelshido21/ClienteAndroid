@@ -3,6 +3,8 @@
           package="com.example.clientestreaming">
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+
     <application
             android:usesCleartextTraffic="true"
             android:allowBackup="true"
@@ -12,14 +14,39 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".ListaReproduccion">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".RegistroCanciones">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".RegistrarAlbum">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".InicioCreadorContenido">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".RegistrarArtista">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".MenuPrincipal">
             <intent-filter>
@@ -29,6 +56,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ReproduccionMP3">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".RegistroUsuario">
             <intent-filter>
@@ -36,8 +68,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name=".pantallaPrincipal">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>

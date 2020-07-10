@@ -1,10 +1,12 @@
 package com.example.clientestreaming;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -19,6 +21,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,6 +41,7 @@ public class RegistrarAlbum extends AppCompatActivity {
     private TextView nombre;
     private TextView fecha;
     private TextView descripcion;
+    private String imagenBase64;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,20 +88,22 @@ public class RegistrarAlbum extends AppCompatActivity {
             int id = (int) (Math.random() * 10000) + 1;
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.15:5001/")
+                    .baseUrl("http://192.168.1.66:5001/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             IServicioLogin postService = retrofit.create(IServicioLogin.class);
 
-            Call<Album> call = postService.PostAlbum(id, nombreAlbum, fechaAlbum, descripcionAlbum);
+            Album album = new Album(id, nombreAlbum, fechaAlbum, descripcionAlbum, imagenBase64);
 
+            Call<Album> call = postService.PostAlbum(album);
 
             call.enqueue(new Callback<Album>() {
                 @Override
                 public void onResponse(Call<Album> call, Response<Album> response) {
                     try {
-                        album = response.body();
-                        Log.e("Respuesta", album.getNombre());
+                        Album a = new Album(id, nombreAlbum, fechaAlbum, descripcionAlbum, imagenBase64);
+                        a = response.body();
+                        Log.e("Respuesta", a.getNombre());
                         registroCanciones();
                     } catch (Exception e) {
                         Log.e("Error",e.getMessage());
@@ -119,8 +128,34 @@ public class RegistrarAlbum extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==RESULT_OK){
-            Uri path=data.getData();
+            Uri path = data.getData();
             imagenAlbum.setImageURI(path);
+            String s = obtenerRutaDeImagen(path);
+            ConvertirImagen(s);
+        }
+    }
+
+    public String obtenerRutaDeImagen(Uri uri) {
+
+        String[] projection = { MediaStore.Images.Media.DATA};
+        @SuppressWarnings("deprecation") Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor .getColumnIndexOrThrow(MediaStore.Images.Media.DATA); cursor.moveToFirst(); return cursor.getString(column_index);
+    }
+
+    public void ConvertirImagen(String ruta){
+        try {
+
+            File file = new File(ruta);
+            byte[] bytesArray = new byte[(int) file.length()];
+            FileInputStream archivo = new FileInputStream(file);
+            archivo.read(bytesArray);
+
+            imagenBase64 = Base64.encodeToString(bytesArray, Base64.DEFAULT);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
