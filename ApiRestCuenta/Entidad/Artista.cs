@@ -10,7 +10,7 @@ namespace ApiRestCuenta.Entidad
     {
         [Key]
         public int id { get; set; }
-        public string nombreArtistico { get; set; }
-        public string descripcion { get; set; }
+        public string NombreArtistico { get; set; }
+        public string Descripcion { get; set; }
     }
 }

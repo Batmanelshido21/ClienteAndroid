@@ -11,7 +11,7 @@ public interface IServicioLogin {
 
     String API_ROUTE="api/cuenta/login";
     @GET(API_ROUTE)
-    Call<ResponseService> GetLogin(
+    Call  <ResponseService> GetLogin(
             @Query("nombreUsuario") String username,
             @Query("contraseña") String password
     );

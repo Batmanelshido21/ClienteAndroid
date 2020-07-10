@@ -72,52 +72,6 @@ public class ReproduccionMP3 extends AppCompatActivity {
         atrasar=(ImageButton)findViewById(R.id.atrasarAudio);
         tiempoAudio=(TextView)findViewById(R.id.tiempoAudio);
         pausar=(ImageButton)findViewById(R.id.pausar);
-        ObtenerAudioFormatDeCancion();
-    }
-
-    public void ObtenerAudioFormatDeCancion(){
-        canal = ManagedChannelBuilder.forAddress("192.168.0.15", 5001).usePlaintext().build();
-        stub = AudioStreamGrpc.newStub(canal);
-
-        final Cancion cancion = Cancion.newBuilder().setNombre("FluorescentAdolescent.wav").build();
-
-        stub.elegirCancion(cancion, new StreamObserver<AudioFormat>() {
-            @Override
-            public void onNext(AudioFormat value) {
-                AudioFormat formato = value;
-
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                Log.e("ERROR", t.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-
-            }
-        });
-
-        stub.obtenerStreamDeCancion(cancion, new StreamObserver<AudioSample>() {
-            @Override
-            public void onNext(AudioSample value) {
-                ByteArrayMediaDataSource cancion = new ByteArrayMediaDataSource(value.getData().toByteArray());
-                mp.setDataSource(cancion);
-                mp.start();
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                Log.e("ERROR", t.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-
-            }
-        });
-
     }
 
     public void reproducir(View view){

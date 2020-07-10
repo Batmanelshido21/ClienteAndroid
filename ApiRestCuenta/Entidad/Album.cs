@@ -13,5 +13,6 @@ namespace ApiRestCuenta.Entidad
         public string nombre { get; set; }
         public string fecha { get; set; }
         public string descripcion { get; set; }
+        public int ArtistaId { get; set; }
     }
 }

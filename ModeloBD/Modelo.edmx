@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AplicacionesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AplicacionesModelStoreContainer">
+    <EntitySet Name="Album" EntityType="AplicacionesModel.Store.Album" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="cancion" EntityType="AplicacionesModel.Store.cancion" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Cuenta" EntityType="AplicacionesModel.Store.Cuenta" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ListaDeReproduccionSet" EntityType="AplicacionesModel.Store.ListaDeReproduccionSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ArtistaSet" EntityType="AplicacionesModel.Store.ArtistaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="cancionListaDeReproduccion" EntityType="AplicacionesModel.Store.cancionListaDeReproduccion" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="Albumcancion" Association="AplicacionesModel.Store.Albumcancion">
+      <End Role="Album" EntitySet="Album" />
+      <End Role="cancion" EntitySet="cancion" />
+    </AssociationSet>
+    <AssociationSet Name="CuentaListaDeReproduccion" Association="AplicacionesModel.Store.CuentaListaDeReproduccion">
+      <End Role="Cuenta" EntitySet="Cuenta" />
+      <End Role="ListaDeReproduccion" EntitySet="ListaDeReproduccionSet" />
+    </AssociationSet>
+    <AssociationSet Name="ArtistaAlbum" Association="AplicacionesModel.Store.ArtistaAlbum">
+      <End Role="Artista" EntitySet="ArtistaSet" />
+      <End Role="Album" EntitySet="Album" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cancionListaDeReproduccion_cancion" Association="AplicacionesModel.Store.FK_cancionListaDeReproduccion_cancion">
+      <End Role="cancion" EntitySet="cancion" />
+      <End Role="cancionListaDeReproduccion" EntitySet="cancionListaDeReproduccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cancionListaDeReproduccion_ListaDeReproduccion" Association="AplicacionesModel.Store.FK_cancionListaDeReproduccion_ListaDeReproduccion">
+      <End Role="ListaDeReproduccion" EntitySet="ListaDeReproduccionSet" />
+      <End Role="cancionListaDeReproduccion" EntitySet="cancionListaDeReproduccion" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Album">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="ArtistaId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="cancion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="80" />
+    <Property Name="genero" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="duracion" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="ListaDeReproduccionId" Type="int" Nullable="true" />
+    <Property Name="Album_id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Cuenta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombreUsuario" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="correoElectronico" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="contraseña" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="tipo" Type="varchar" Nullable="false" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="ListaDeReproduccionSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Cuenta_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ArtistaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreArtistico" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cancionListaDeReproduccion">
+    <Key>
+      <PropertyRef Name="cancion_id" />
+      <PropertyRef Name="ListaDeReproduccion_Id" />
+    </Key>
+    <Property Name="cancion_id" Type="int" Nullable="false" />
+    <Property Name="ListaDeReproduccion_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="Albumcancion">
+    <End Role="Album" Type="AplicacionesModel.Store.Album" Multiplicity="0..1" />
+    <End Role="cancion" Type="AplicacionesModel.Store.cancion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cancion">
+        <PropertyRef Name="Album_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CuentaListaDeReproduccion">
+    <End Role="Cuenta" Type="AplicacionesModel.Store.Cuenta" Multiplicity="1" />
+    <End Role="ListaDeReproduccion" Type="AplicacionesModel.Store.ListaDeReproduccionSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cuenta">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ListaDeReproduccion">
+        <PropertyRef Name="Cuenta_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ArtistaAlbum">
+    <End Role="Artista" Type="AplicacionesModel.Store.ArtistaSet" Multiplicity="0..1" />
+    <End Role="Album" Type="AplicacionesModel.Store.Album" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artista">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Album">
+        <PropertyRef Name="ArtistaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cancionListaDeReproduccion_cancion">
+    <End Role="cancion" Type="AplicacionesModel.Store.cancion" Multiplicity="1" />
+    <End Role="cancionListaDeReproduccion" Type="AplicacionesModel.Store.cancionListaDeReproduccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cancion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cancionListaDeReproduccion">
+        <PropertyRef Name="cancion_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cancionListaDeReproduccion_ListaDeReproduccion">
+    <End Role="cancionListaDeReproduccion" Type="AplicacionesModel.Store.cancionListaDeReproduccion" Multiplicity="*" />
+    <End Role="ListaDeReproduccion" Type="AplicacionesModel.Store.ListaDeReproduccionSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ListaDeReproduccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="cancionListaDeReproduccion">
+        <PropertyRef Name="ListaDeReproduccion_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AplicacionesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cancion" Relationship="AplicacionesModel.Albumcancion" FromRole="Album" ToRole="cancion" />
+          <NavigationProperty Name="Artista" Relationship="AplicacionesModel.ArtistaAlbum" FromRole="Album" ToRole="Artista" />
+          <Property Name="ArtistaId" Nullable="true" Type="Int32" />
+        </EntityType>
+        <EntityType Name="cancion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="genero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="duracion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ListaDeReproduccionId" Nullable="true" Type="Int32" />
+          <NavigationProperty Name="Album" Relationship="AplicacionesModel.Albumcancion" FromRole="cancion" ToRole="Album" />
+          <Property Name="Album_id" Nullable="true" Type="Int32" />
+          <NavigationProperty Name="ListaDeReproduccion" Relationship="AplicacionesModel.cancionListaDeReproduccion" FromRole="cancion" ToRole="ListaDeReproduccion" />
+        </EntityType>
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nombreUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ListaDeReproduccion" Relationship="AplicacionesModel.CuentaListaDeReproduccion" FromRole="Cuenta" ToRole="ListaDeReproduccion" />
+        </EntityType>
+        <EntityContainer Name="AplicacionesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Album" EntityType="Self.Album" />
+          <EntitySet Name="cancion" EntityType="Self.cancion" />
+          <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
+          <EntitySet Name="ListaDeReproduccionSet" EntityType="AplicacionesModel.ListaDeReproduccion" />
+          <AssociationSet Name="Albumcancion" Association="AplicacionesModel.Albumcancion">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="cancion" EntitySet="cancion" />
+          </AssociationSet>
+          <AssociationSet Name="CuentaListaDeReproduccion" Association="AplicacionesModel.CuentaListaDeReproduccion">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="ListaDeReproduccion" EntitySet="ListaDeReproduccionSet" />
+          </AssociationSet>
+          <EntitySet Name="ArtistaSet" EntityType="AplicacionesModel.Artista" />
+          <AssociationSet Name="ArtistaAlbum" Association="AplicacionesModel.ArtistaAlbum">
+            <End Role="Artista" EntitySet="ArtistaSet" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="cancionListaDeReproduccion" Association="AplicacionesModel.cancionListaDeReproduccion">
+            <End Role="cancion" EntitySet="cancion" />
+            <End Role="ListaDeReproduccion" EntitySet="ListaDeReproduccionSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ListaDeReproduccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Cuenta" Relationship="AplicacionesModel.CuentaListaDeReproduccion" FromRole="ListaDeReproduccion" ToRole="Cuenta" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="cancion" Relationship="AplicacionesModel.cancionListaDeReproduccion" FromRole="ListaDeReproduccion" ToRole="cancion" />
+        </EntityType>
+        <Association Name="Albumcancion">
+          <End Type="AplicacionesModel.Album" Role="Album" Multiplicity="0..1" />
+          <End Type="AplicacionesModel.cancion" Role="cancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cancion">
+              <PropertyRef Name="Album_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CuentaListaDeReproduccion">
+          <End Type="AplicacionesModel.Cuenta" Role="Cuenta" Multiplicity="1" />
+          <End Type="AplicacionesModel.ListaDeReproduccion" Role="ListaDeReproduccion" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="Artista">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreArtistico" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="Album" Relationship="AplicacionesModel.ArtistaAlbum" FromRole="Artista" ToRole="Album" />
+        </EntityType>
+        <Association Name="ArtistaAlbum">
+          <End Type="AplicacionesModel.Artista" Role="Artista" Multiplicity="0..1" />
+          <End Type="AplicacionesModel.Album" Role="Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artista">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="ArtistaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cancionListaDeReproduccion">
+          <End Type="AplicacionesModel.cancion" Role="cancion" Multiplicity="*" />
+          <End Type="AplicacionesModel.ListaDeReproduccion" Role="ListaDeReproduccion" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AplicacionesModelStoreContainer" CdmEntityContainer="AplicacionesEntities">
+    <EntitySetMapping Name="Album">
+      <EntityTypeMapping TypeName="IsTypeOf(AplicacionesModel.Album)">
+        <MappingFragment StoreEntitySet="Album">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="ArtistaId" ColumnName="ArtistaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cancion">
+      <EntityTypeMapping TypeName="IsTypeOf(AplicacionesModel.cancion)">
+        <MappingFragment StoreEntitySet="cancion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="genero" ColumnName="genero" />
+          <ScalarProperty Name="duracion" ColumnName="duracion" />
+          <ScalarProperty Name="ListaDeReproduccionId" ColumnName="ListaDeReproduccionId" />
+          <ScalarProperty Name="Album_id" ColumnName="Album_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cuenta">
+      <EntityTypeMapping TypeName="IsTypeOf(AplicacionesModel.Cuenta)">
+        <MappingFragment StoreEntitySet="Cuenta">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+          <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListaDeReproduccionSet">
+      <EntityTypeMapping TypeName="IsTypeOf(AplicacionesModel.ListaDeReproduccion)">
+        <MappingFragment StoreEntitySet="ListaDeReproduccionSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArtistaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(AplicacionesModel.Artista)">
+        <MappingFragment StoreEntitySet="ArtistaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreArtistico" ColumnName="NombreArtistico" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CuentaListaDeReproduccion" TypeName="AplicacionesModel.CuentaListaDeReproduccion" StoreEntitySet="ListaDeReproduccionSet">
+      <EndProperty Name="Cuenta">
+        <ScalarProperty Name="id" ColumnName="Cuenta_id" />
+      </EndProperty>
+      <EndProperty Name="ListaDeReproduccion">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="cancionListaDeReproduccion" TypeName="AplicacionesModel.cancionListaDeReproduccion" StoreEntitySet="cancionListaDeReproduccion">
+      <EndProperty Name="cancion">
+        <ScalarProperty Name="id" ColumnName="cancion_id" />
+      </EndProperty>
+      <EndProperty Name="ListaDeReproduccion">
+        <ScalarProperty Name="Id" ColumnName="ListaDeReproduccion_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

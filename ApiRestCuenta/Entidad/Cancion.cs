@@ -13,5 +13,7 @@ namespace ApiRestCuenta.Entidad
         public string nombre { get; set; }
         public string genero { get; set; }
         public string duracion { get; set; }
+        public int ListaDeReproduccionId { get; set; }
+        public int Album_id { get; set; }
     }
 }
