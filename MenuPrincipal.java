@@ -3,23 +3,23 @@ package com.example.clientestreaming;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
+import android.view.*;
 import android.widget.*;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,6 @@ public class MenuPrincipal extends AppCompatActivity {
     private TextView buscarTexto;
     private ImageButton botonBuscar;
     String nombreCancion;
-    int pos;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -60,7 +59,6 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 nombreCancion = datos.get(i);
-                pos = i;
                 cambioPantalla(nombreCancion);
             }
         });
@@ -68,9 +66,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
     public void cambioPantalla(String nombreCancion){
         Intent siguiente = new Intent(this,ReproduccionMP3.class);
-        siguiente.putStringArrayListExtra("miLista", datos);;
         siguiente.putExtra("nombreCancion",nombreCancion);
-        siguiente.putExtra("pos", pos);
         startActivity(siguiente);
     }
 
@@ -83,18 +79,18 @@ public class MenuPrincipal extends AppCompatActivity {
 
         String nombre = String.valueOf(buscarTexto.getText());
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.66:5001/")
+                .baseUrl("http://192.168.0.15:5001/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        Call<List<CancionRespuesta>> call = postService.getCanciones(nombre);
+        Call<List<Cancion>> call = postService.getCanciones(nombre);
 
-        call.enqueue(new Callback<List<CancionRespuesta>>() {
+        call.enqueue(new Callback<List<Cancion>>() {
             @Override
-            public void onResponse(Call<List<CancionRespuesta>> call, Response<List<CancionRespuesta>> response) {
+            public void onResponse(Call<List<Cancion>> call, Response<List<Cancion>> response) {
                 try {
-                    for(CancionRespuesta song : response.body()) {
-                        datos.add(song.getNombre());
+                    for(Cancion song : response.body()) {
+                       datos.add(song.getNombre());
                     }
                     listaCanciones.setAdapter(adapter);
 
@@ -103,7 +99,7 @@ public class MenuPrincipal extends AppCompatActivity {
                 }
             }
             @Override
-            public void onFailure(Call<List<CancionRespuesta>> call, Throwable t) {
+            public void onFailure(Call<List<Cancion>> call, Throwable t) {
             }
         });
     }

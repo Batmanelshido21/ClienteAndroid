@@ -7,17 +7,17 @@ public class Cancion {
     private String genero;
     private String duracion;
     private String audio;
-    private int ListaDeReproduccion;
-    private int Album_id;
+    private int ListaDeReproduccionId;
+    private int idAlbum;
 
-    public Cancion(int id, String nombre, String genero, String duracion, String audio, int listaDeReproduccion, int album_id) {
+    public Cancion(int id, String nombre, String genero, String duracion, String audio, int ListaDeReproduccionId, int idAlbum) {
         this.id = id;
         this.nombre = nombre;
         this.genero = genero;
         this.duracion = duracion;
         this.audio = audio;
-        this.ListaDeReproduccion = listaDeReproduccion;
-        this.Album_id = album_id;
+        this.ListaDeReproduccionId = ListaDeReproduccionId;
+        this.idAlbum = idAlbum;
     }
 
     public int getId() {
@@ -61,18 +61,18 @@ public class Cancion {
     }
 
     public int getListaDeReproduccion() {
-        return ListaDeReproduccion;
+        return ListaDeReproduccionId;
     }
 
     public void setListaDeReproduccion(int listaDeReproduccion) {
-        this.ListaDeReproduccion = listaDeReproduccion;
+        this.ListaDeReproduccionId = listaDeReproduccion;
     }
 
     public int getAlbum_id() {
-        return Album_id;
+        return idAlbum;
     }
 
     public void setAlbum_id(int album_id) {
-        Album_id = album_id;
+        idAlbum = album_id;
     }
 }

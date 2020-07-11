@@ -166,11 +166,11 @@ public class RegistroCanciones extends AppCompatActivity {
             }
         });
 
-        if(cancion.getNombre().isEmpty()){
+        /*if(cancion.getNombre().isEmpty()){
             Toast.makeText(this, "No se pudo registrar la canción", Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(this, "Canción registrada, puede seguir agregando canciones o regresar a la pantalla principal", Toast.LENGTH_LONG).show();
-        }
+        }*/
     }
 }
 

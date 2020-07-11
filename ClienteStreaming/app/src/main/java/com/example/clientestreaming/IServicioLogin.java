@@ -42,4 +42,10 @@ public interface IServicioLogin {
 
     @GET("api/cuenta/listaArtistas")
     Call<List <Artista>> obtenerArtistas();
+
+
+    @GET("api/cuenta/listaCanciones")
+    Call<List<CancionRespuesta>> getCanciones(
+            @Query("nombre") String nombre
+    );
 }

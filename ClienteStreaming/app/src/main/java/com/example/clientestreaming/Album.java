@@ -7,23 +7,23 @@ public class Album {
     private String fecha;
     private String descripcion;
     private String imagen;
-    private Integer ArtistaId;
+    private Integer idArtista;
 
-    public Album(Integer id, String nombre, String fecha, String descripcion, String imagen, Integer artistaId) {
+    public Album(Integer id, String nombre, String fecha, String descripcion, String imagen, Integer idArtista) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;
         this.descripcion = descripcion;
         this.imagen = imagen;
-        this.ArtistaId = artistaId;
+        this.idArtista = idArtista;
     }
 
     public Integer getArtistaId() {
-        return ArtistaId;
+        return idArtista;
     }
 
     public void setArtistaId(Integer artistaId) {
-        this.ArtistaId = artistaId;
+        this.idArtista = artistaId;
     }
 
     public Integer getId() {

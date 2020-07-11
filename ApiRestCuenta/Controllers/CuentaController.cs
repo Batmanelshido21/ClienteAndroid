@@ -42,6 +42,26 @@ namespace ApiRestCuenta.Controllers
             return cuenta;
         }
 
+        [HttpGet("listaCanciones")]
+        public IEnumerable<Cancion> getCanciones(string nombre){
+            
+            Console.WriteLine("Entro al get canciones");
+            List<Cancion> listaCanciones = new List<Cancion>();
+            var cancion=(from p in context.Cancion where p.nombre==nombre select p).FirstOrDefault();
+            
+            if(cancion!=null){
+                listaCanciones.Add(new Cancion(cancion.id,cancion.nombre, cancion.genero,cancion.duracion, cancion.Album_id));
+                var canciones = from s in context.Cancion where cancion.genero == s.genero select s;
+                foreach(var valor in canciones){
+                    if(valor.nombre!=nombre){
+                        listaCanciones.Add(new Cancion(valor.id,valor.nombre,valor.genero,valor.duracion, valor.Album_id));
+                    }
+                }   
+            }
+            
+            return listaCanciones;
+        }
+
         [HttpGet("reproducirAudio")]
         public Audio obtenerCancion(string nombreCancion){
         Audio audio = new Audio();
@@ -50,7 +70,7 @@ namespace ApiRestCuenta.Controllers
         int longitud;
         var PathfileName = string.Empty;
 
-        PathfileName = "/home/javier/Descargas/"+nombreCancion+".mp3";
+        PathfileName = "C:/Users/BETO/Documents/"+nombreCancion+".mp3";
 
         using (var fs = new FileStream(PathfileName, FileMode.Open, FileAccess.Read))
         {
@@ -80,7 +100,7 @@ namespace ApiRestCuenta.Controllers
             return context.ArtistaSet.ToList();
         }
 
-        [HttpGet("listaCanciones")]
+        [HttpGet("listaDeCanciones")]
         public IEnumerable<Cancion> getCanciones(){
             return context.Cancion.ToList();
         }
@@ -150,13 +170,16 @@ namespace ApiRestCuenta.Controllers
         public AlbumDAO PostAlbum([FromBody] AlbumDAO albumDao)
         {
             Console.WriteLine("El id del artista es: " + albumDao.idArtista);
-            
+
             Album album = new Album();
             album.id= albumDao.id;
             album.nombre= albumDao.nombre;
             album.fecha= albumDao.fecha;
             album.descripcion= albumDao.descripcion;
-            album.ArtistaId = albumDao.idArtista;
+
+            var artista = (from per in context.ArtistaSet where per.id == albumDao.idArtista select per).First();
+
+            album.ArtistaId = artista.id;
 
             try
             {
@@ -181,7 +204,7 @@ namespace ApiRestCuenta.Controllers
 
        [HttpPost("registroCancion")]
 
-       public Cancion PostCancion([FromBody] CancionSubida cancionSubida)
+       public CancionSubida PostCancion([FromBody] CancionSubida cancionSubida)
        {
             Cancion cancion = new Cancion();
             cancion.id = cancionSubida.id;
@@ -200,13 +223,13 @@ namespace ApiRestCuenta.Controllers
 
                 Console.WriteLine("registro cancion");
 
-                return cancion;
+                return cancionSubida;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 
-                return cancion;
+                return cancionSubida;
             }
         }
 

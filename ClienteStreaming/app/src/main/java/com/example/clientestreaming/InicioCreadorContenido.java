@@ -42,7 +42,7 @@ public class InicioCreadorContenido extends AppCompatActivity {
     }
 
     public void registroAlbum(View view){
-        Intent siguiente = new Intent(this,RegistrarAlbum.class);
+        Intent siguiente = new Intent(this, RegistrarAlbum.class);
         startActivity(siguiente);
     }
 

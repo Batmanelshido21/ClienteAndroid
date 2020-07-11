@@ -22,6 +22,7 @@ public class ArtistasRegistrados extends AppCompatActivity {
 
     ListView listViewArtistas;
     ArrayList<String> nombreArtistas;
+    ArrayAdapter adapter;
     ArrayList<Integer> idArtistas = new ArrayList<>();
     int idArtista;
 
@@ -35,14 +36,11 @@ public class ArtistasRegistrados extends AppCompatActivity {
         nombreArtistas =  new  ArrayList<>();
         idArtistas =  new  ArrayList<>();
 
-        obtenerArtistas();
-
         Toast.makeText(this, "Seleccione a un artista para continuar", Toast.LENGTH_LONG).show();
 
-        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nombreArtistas);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nombreArtistas);
 
-        listViewArtistas.setAdapter(adapter);
-
+        obtenerArtistas();
 
         listViewArtistas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -73,6 +71,8 @@ public class ArtistasRegistrados extends AppCompatActivity {
                     nombreArtistas.add(artista.getNombreArtistico());
                     idArtistas.add(artista.getId());
                 }
+
+                listViewArtistas.setAdapter(adapter);
             }
 
             @Override

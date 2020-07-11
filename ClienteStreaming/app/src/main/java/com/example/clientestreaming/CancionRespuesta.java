@@ -1,6 +1,6 @@
 package com.example.clientestreaming;
 
-public class CancionSubida {
+public class CancionRespuesta {
 
     int id;
     String nombre;
@@ -8,7 +8,7 @@ public class CancionSubida {
     String duracion;
     String audio;
 
-    public CancionSubida(int id, String nombre, String genero, String duracion, String audio) {
+    public CancionRespuesta(int id, String nombre, String genero, String duracion, String audio) {
         this.id = id;
         this.nombre = nombre;
         this.genero = genero;

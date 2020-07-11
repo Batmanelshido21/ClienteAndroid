@@ -7,7 +7,6 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -29,8 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Base64;
 
 public class ReproduccionMP3 extends AppCompatActivity {
 
@@ -48,9 +46,6 @@ public class ReproduccionMP3 extends AppCompatActivity {
     private String nombreCancion;
     byte[] byteArrray;
     private Button descargar;
-    private List<String> nombresDeCanciones = new ArrayList<>();
-    int pos;
-
 
     private ManagedChannel canal;
     Audio audio;
@@ -75,8 +70,6 @@ public class ReproduccionMP3 extends AppCompatActivity {
         nombreCancion=getIntent().getStringExtra("nombreCancion");
         play=(ImageButton)findViewById(R.id.reproductor);
         descargar=(Button)findViewById(R.id.botonDescargar);
-        nombresDeCanciones = (ArrayList<String>) getIntent().getSerializableExtra("miLista");
-        pos = getIntent().getExtras().getInt("pos");
         reproducir(nombreCancion);
     }
 
@@ -89,11 +82,9 @@ public class ReproduccionMP3 extends AppCompatActivity {
     }
 
     public void cambiar(View view){
-        if(pos < (nombresDeCanciones.size() -1)){
-            pos++;
-            Log.e("Nombre Cancion: ", nombresDeCanciones.get(pos));
-            reproducir(nombresDeCanciones.get(pos));
-        }
+        mp.pause();
+        mp=MediaPlayer.create(this,R.raw.gta);
+        mp.start();
     }
 
     public void guardarAudio(View view){
@@ -107,16 +98,13 @@ public class ReproduccionMP3 extends AppCompatActivity {
     }
 
     public void atrasarAudio(View view){
-        if(pos >= 1){
-            pos--;
-            Log.e("Nombre Cancion: ", nombresDeCanciones.get(pos));
-            reproducir(nombresDeCanciones.get(pos));
-        }
+        mp.pause();
+        mp=MediaPlayer.create(this,R.raw.dale);
+        mp.start();
     }
-
     public void reproducir(String nombreCancion){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.66:5001/")
+                .baseUrl("http://192.168.0.15:5001/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IServicioLogin postService = retrofit.create(IServicioLogin.class);
@@ -127,7 +115,7 @@ public class ReproduccionMP3 extends AppCompatActivity {
             public void onResponse(Call<Audio> call, Response<Audio> response) {
                 try {
                     audio= response.body();
-                    byteArrray = Base64.decode(audio.getCancion(), Base64.DEFAULT);//Base64.getDecoder().decode(audio.getCancion().getBytes());
+                    byteArrray = Base64.getDecoder().decode(audio.getCancion().getBytes());
                     File tempMp3 = File.createTempFile("kurchina", "mp3", getCacheDir());
                     tempMp3.deleteOnExit();
                     FileOutputStream fos = new FileOutputStream(tempMp3);
@@ -160,4 +148,3 @@ public class ReproduccionMP3 extends AppCompatActivity {
         });
     }
 }
-
