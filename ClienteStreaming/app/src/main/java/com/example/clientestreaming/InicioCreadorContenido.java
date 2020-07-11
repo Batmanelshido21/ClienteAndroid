@@ -20,7 +20,7 @@ public class InicioCreadorContenido extends AppCompatActivity {
     private Button album;
     private ImageButton boton;
     private Button listaReproduccion;
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

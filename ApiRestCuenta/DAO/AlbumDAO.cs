@@ -13,5 +13,6 @@ namespace ApiRestCuenta.DAO
         public string fecha { get; set; }
         public string descripcion { get; set; }
         public string imagen { get; set; }
+        public int idArtista { get; set; }
     }
 }

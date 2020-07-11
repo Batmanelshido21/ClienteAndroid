@@ -158,3 +158,4 @@ C:\Users\BETO\Documents\GitHub\ClienteAndroid\ApiRestCuenta\obj\Debug\netcoreapp
 C:\Users\BETO\Documents\GitHub\ClienteAndroid\ApiRestCuenta\obj\Debug\netcoreapp3.1\ApiRestCuenta.genruntimeconfig.cache
 C:\Users\BETO\Documents\GitHub\ClienteAndroid\ApiRestCuenta\obj\Debug\netcoreapp3.1\ApiRestCuenta.csproj.CoreCompileInputs.cache
 C:\Users\BETO\Documents\GitHub\ClienteAndroid\ApiRestCuenta\obj\Debug\netcoreapp3.1\ApiRestCuenta.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\BETO\Documents\GitHub\ClienteAndroid\ApiRestCuenta\bin\Debug\netcoreapp3.1\packages\EntityFramework.6.4.4\tools\netcoreapp3.0\any\ef6.runtimeconfig.json

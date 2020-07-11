@@ -12,7 +12,7 @@ namespace ApiRestCuenta.DAO
         public string nombre { get; set; }
         public string genero { get; set; }
         public String duracion { get; set; }
-
         public string audio { get; set; }
+        public int idAlbum { get; set; }
     }
 }

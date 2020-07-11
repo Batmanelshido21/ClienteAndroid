@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApiRestCuenta.Entidad
 {
-    public class Artista
+    public class ArtistaSet
     {
         [Key]
         public int id { get; set; }

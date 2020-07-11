@@ -37,11 +37,12 @@ public class RegistrarAlbum extends AppCompatActivity {
     private Button canciones;
     private ImageView imagenAlbum;
     private Button botonCargar;
-    Album album;
     private TextView nombre;
     private TextView fecha;
     private TextView descripcion;
     private String imagenBase64;
+    int idArtista;
+    int idAlbum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,16 +60,19 @@ public class RegistrarAlbum extends AppCompatActivity {
         nombre=(TextView)findViewById(R.id.nombreAlbumInput);
         fecha=(TextView)findViewById(R.id.fechaAlbumInput);
         descripcion=(TextView)findViewById(R.id.descripcionAlbumInput);
+
+        idArtista = getIntent().getExtras().getInt("idArtista");
+
+        Log.e("Id Artista RA", String.valueOf(idArtista));
     }
 
     public void volver(View view){
-        Intent siguiente = new Intent(this,InicioCreadorContenido.class);
+        Intent siguiente = new Intent(this,ArtistasRegistrados.class);
         startActivity(siguiente);
     }
 
     public void canciones(View view){
         registroAlbum();
-
     }
 
     public void cargarImagen(View view){
@@ -85,7 +89,7 @@ public class RegistrarAlbum extends AppCompatActivity {
 
         if(validarDatos(nombreAlbum, fechaAlbum, descripcionAlbum)){
 
-            int id = (int) (Math.random() * 10000) + 1;
+            idAlbum = (int) (Math.random() * 10000) + 1;
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://192.168.1.66:5001/")
@@ -93,7 +97,7 @@ public class RegistrarAlbum extends AppCompatActivity {
                     .build();
             IServicioLogin postService = retrofit.create(IServicioLogin.class);
 
-            Album album = new Album(id, nombreAlbum, fechaAlbum, descripcionAlbum, imagenBase64);
+            Album album = new Album(idAlbum, nombreAlbum, fechaAlbum, descripcionAlbum, imagenBase64, idArtista);
 
             Call<Album> call = postService.PostAlbum(album);
 
@@ -101,9 +105,7 @@ public class RegistrarAlbum extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Album> call, Response<Album> response) {
                     try {
-                        Album a = new Album(id, nombreAlbum, fechaAlbum, descripcionAlbum, imagenBase64);
-                        a = response.body();
-                        Log.e("Respuesta", a.getNombre());
+                        Album a = response.body();
                         registroCanciones();
                     } catch (Exception e) {
                         Log.e("Error",e.getMessage());
@@ -120,7 +122,9 @@ public class RegistrarAlbum extends AppCompatActivity {
     }
 
     public void registroCanciones(){
-        Intent siguiente = new Intent(this,RegistroCanciones.class);
+        Intent siguiente = new Intent(this, RegistroCanciones.class);
+        siguiente.putExtra("idAlbum", idAlbum);
+
         startActivity(siguiente);
     }
 

@@ -75,8 +75,9 @@ namespace ApiRestCuenta.Controllers
         }
 
         [HttpGet("listaArtistas")]
-        public IEnumerable<Artista> GetArtistas(){
-            return context.Artista.ToList();
+        public IEnumerable<ArtistaSet> GetArtistas(){
+            Console.WriteLine("Entro al get artistas");
+            return context.ArtistaSet.ToList();
         }
 
         [HttpGet("listaCanciones")]
@@ -120,12 +121,12 @@ namespace ApiRestCuenta.Controllers
 
 
         [HttpPost("registroArtista")]
-        public Artista PostArtista([FromBody] ArtistaDAO artistaDAO)
+        public ArtistaSet PostArtista([FromBody] ArtistaDAO artistaDAO)
         {
-            Artista artista = new Artista();
+            ArtistaSet artista = new ArtistaSet();
             artista.id = artistaDAO.id;
-            artista.nombreArtistico = artistaDAO.nombreArtistico;
-            artista.descripcion = artistaDAO.descripcion;
+            artista.NombreArtistico = artistaDAO.nombreArtistico;
+            artista.Descripcion = artistaDAO.descripcion;
 
             try
             {
@@ -133,8 +134,7 @@ namespace ApiRestCuenta.Controllers
 
                 Image imagenAGuardar = (Bitmap)((new ImageConverter()).ConvertFrom(bytesDeImagen));
                 imagenAGuardar.Save("C:/Users/BETO/Documents/" + artistaDAO.nombreArtistico + ".jpg", ImageFormat.Jpeg);
-
-                context.Artista.Add(artista);
+                context.ArtistaSet.Add(artista);
                 context.SaveChanges();
 
                 return artista;
@@ -149,11 +149,15 @@ namespace ApiRestCuenta.Controllers
         [HttpPost("registroAlbum")]
         public AlbumDAO PostAlbum([FromBody] AlbumDAO albumDao)
         {
+            Console.WriteLine("El id del artista es: " + albumDao.idArtista);
+            
             Album album = new Album();
             album.id= albumDao.id;
             album.nombre= albumDao.nombre;
             album.fecha= albumDao.fecha;
             album.descripcion= albumDao.descripcion;
+            album.ArtistaId = albumDao.idArtista;
+
             try
             {
                 byte[] bytesDeImagen = Convert.FromBase64String(albumDao.imagen);
@@ -163,6 +167,8 @@ namespace ApiRestCuenta.Controllers
 
                 context.Album.Add(album);
                 context.SaveChanges();
+
+                Console.WriteLine("registro Album");
 
                 return albumDao;
             }
@@ -182,6 +188,7 @@ namespace ApiRestCuenta.Controllers
             cancion.nombre = cancionSubida.nombre;
             cancion.genero = cancionSubida.genero;
             cancion.duracion = cancionSubida.duracion;
+            cancion.Album_id = cancionSubida.idAlbum;
             
             try
             {
@@ -190,6 +197,8 @@ namespace ApiRestCuenta.Controllers
                 System.IO.File.WriteAllBytes("C:/Users/BETO/Documents/" + cancionSubida.nombre + ".mp3",bytes);
                 context.Cancion.Add(cancion);
                 context.SaveChanges();
+
+                Console.WriteLine("registro cancion");
 
                 return cancion;
             }
