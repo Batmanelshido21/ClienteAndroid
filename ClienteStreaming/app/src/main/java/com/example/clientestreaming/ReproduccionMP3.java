@@ -1,6 +1,8 @@
 package com.example.clientestreaming;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -11,10 +13,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +48,7 @@ public class ReproduccionMP3 extends AppCompatActivity {
     byte[] byteArrray;
     private List<String> nombresDeCanciones = new ArrayList<>();
     int pos;
+     private ImageView image;
 
 
     private ManagedChannel canal;
@@ -76,7 +76,37 @@ public class ReproduccionMP3 extends AppCompatActivity {
         nombresDeCanciones = (ArrayList<String>) getIntent().getSerializableExtra("miLista");
         pos = getIntent().getExtras().getInt("pos");
         listaReproduccion= (Button)findViewById(R.id.botonListaR);
+        image =(ImageView)findViewById(R.id.imagenAlbum);
         reproducir(nombreCancion);
+    }
+
+    private void obtenerImagen() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.15:5001/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        IServicioLogin postService = retrofit.create(IServicioLogin.class);
+
+        Call<Imagen> call = postService.getImagenAlbum(nombreCancion);
+
+        call.enqueue(new Callback<Imagen>() {
+            @Override
+            public void onResponse(Call<Imagen> call, Response<Imagen> response) {
+                try {
+                   Imagen imagen = response.body();
+                    byte[] byteArray = Base64.decode(imagen.getImagen(), Base64.DEFAULT);
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                    image.setImageBitmap(bitmap);
+                   Log.e("Exito",imagen.getImagen());
+
+                } catch (Exception e) {
+                    Log.e("Error",e.getMessage());
+                }
+            }
+            @Override
+            public void onFailure(Call<Imagen> call, Throwable t) {
+            }
+        });
     }
 
     public void reproducir(View view){
@@ -96,7 +126,7 @@ public class ReproduccionMP3 extends AppCompatActivity {
     }
 
     public void AgregarALista(View view){
-        Intent siguiente = new Intent(this,ListaReproduccion.class);
+        Intent siguiente = new Intent(this,ListaReproducir.class);
         siguiente.putExtra("nombreCancion",nombresDeCanciones.get(pos));
         startActivity(siguiente);
     }
@@ -116,6 +146,7 @@ public class ReproduccionMP3 extends AppCompatActivity {
     }
 
     public void reproducir(String nombreCancion){
+        obtenerImagen();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.15:5001/")
                 .addConverterFactory(GsonConverterFactory.create())

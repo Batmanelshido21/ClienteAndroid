@@ -3,15 +3,10 @@ package com.example.clientestreaming;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import androidx.annotation.RequiresApi;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import retrofit2.Call;
@@ -23,67 +18,61 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaReproduccion extends AppCompatActivity {
+public class contenidoLista extends AppCompatActivity {
 
     private Window window;
-    private ImageButton botonVolver;
+    private String listaReproduccion;
+    private TextView nombreLista;
+    private ImageButton volverLista;
     private ListView listaCanciones;
-    private String nombreCancion;
+    private ArrayList<String> datos = new ArrayList<String>();
     ArrayAdapter<String> adapter;
-    ArrayList<String> datos;
-    String listaReproduccion;
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    String nombreCancion;
+    private TextView nombreL;
+    int pos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_reproduccion);
+        setContentView(R.layout.activity_contenido_lista);
         this.window=getWindow();
         window.setStatusBarColor(Color.parseColor("#0B0B0B"));
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#43a074")));
         window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#494949")));
         window.setNavigationBarColor(Color.parseColor("#43a074"));
-        botonVolver=(ImageButton)findViewById(R.id.botonV);
+        listaReproduccion=getIntent().getStringExtra("listaReproduccion");
+        nombreLista=(TextView)findViewById(R.id.nombreLista);
+        volverLista=(ImageButton)findViewById(R.id.volverMenu);
         listaCanciones=(ListView)findViewById(R.id.listaCanciones);
-        datos = new ArrayList<String>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,datos);
-        obtenerListas();
+        nombreL=(TextView)findViewById(R.id.nombreLista);
+        nombreLista.setText(listaReproduccion);
+        obtenerCanciones();
 
         listaCanciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                listaReproduccion=datos.get(i);
-                mostrarListas(listaReproduccion);
+                nombreCancion = datos.get(i);
+                pos = i;
+                cambioPantalla(nombreCancion);
             }
         });
     }
 
-    public void mostrarListas(String listaReproduccion){
-        Intent siguiente = new Intent(this,contenidoLista.class);
-        siguiente.putExtra("listaReproduccion",listaReproduccion);
-        startActivity(siguiente);
-    }
-
-    public void volver(View view){
-        Intent siguiente = new Intent(this,InicioCreadorContenido.class);
-        startActivity(siguiente);
-    }
-
-    private void obtenerListas() {
+    private void obtenerCanciones() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.15:5001/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        Call<List<String>> call = postService.GetListasDeReproduccion(4654);
+        Call<List<String>> call = postService.GetcancionesDeLista(listaReproduccion);
 
         call.enqueue(new Callback<List<String>>() {
             @Override
             public void onResponse(Call<List<String>>call, Response<List<String>> response) {
                 try {
-                    for(String song : response.body()) {
-                        datos.add(song);
+                    for(String nombre : response.body()) {
+                        datos.add(nombre);
                     }
-                    Log.e("Texto","");
                     listaCanciones.setAdapter(adapter);
                 } catch (Exception e) {
                     Log.e("Error",e.getMessage());
@@ -93,6 +82,14 @@ public class ListaReproduccion extends AppCompatActivity {
             public void onFailure(Call<List<String>> call, Throwable t) {
             }
         });
+    }
+
+    public void cambioPantalla(String nombreCancion){
+        Intent siguiente = new Intent(this,ReproduccionMP3.class);
+        siguiente.putStringArrayListExtra("miLista", datos);;
+        siguiente.putExtra("nombreCancion",nombreCancion);
+        siguiente.putExtra("pos", pos);
+        startActivity(siguiente);
     }
 
 }

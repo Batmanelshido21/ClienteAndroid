@@ -17,5 +17,8 @@ namespace ApiRestCuenta.DBContext
         public DbSet<Album> Album{get;set;}
         public DbSet<ArtistaSet> ArtistaSet{get;set;}
         public DbSet<Cancion> Cancion{get;set;}
+        public DbSet<ListaDeReproduccionSet> ListaDeReproduccionSet{get;set;}
+
+        public DbSet<cancionListaDeReproduccion> CancionListaDeReproduccion{get;set;}
     }
 }

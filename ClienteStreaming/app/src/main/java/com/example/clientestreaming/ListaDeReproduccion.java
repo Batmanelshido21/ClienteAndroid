@@ -2,22 +2,12 @@ package com.example.clientestreaming;
 
 public class ListaDeReproduccion {
 
-    private int id;
     private String Nombre;
     private int Cuenta_id;
 
-    public ListaDeReproduccion(int id, String nombre, int cuenta_id) {
-        this.id = id;
+    public ListaDeReproduccion(String nombre, int cuenta_id) {
         this.Nombre = nombre;
         this.Cuenta_id = cuenta_id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombre() {

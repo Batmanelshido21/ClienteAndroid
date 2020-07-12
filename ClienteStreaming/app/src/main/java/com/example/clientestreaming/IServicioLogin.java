@@ -48,4 +48,30 @@ public interface IServicioLogin {
     Call<List<CancionRespuesta>> getCanciones(
             @Query("nombre") String nombre
     );
+
+    @POST("api/cuenta/registroListaDeReproduccion")
+    Call<ListaDeReproduccion> PostListaDeReproduccion(
+            @Body ListaDeReproduccion listaDeReproduccion
+    );
+
+    @GET("api/cuenta/ObtenerListasDeReproduccion")
+    Call<List<String>> GetListasDeReproduccion(
+            @Query("idCuenta") int idCuenta
+    );
+    @POST("api/cuenta/ligarCancionConLista")
+    Call<Boolean> PostLigarLiastaConCancion(
+            @Query("nombreLista") String nombreLista,
+            @Query("nombreCancion") String nombreCancion
+    );
+
+    @GET("api/cuenta/CancionesDeListaReproduccion")
+    Call<List<String>> GetcancionesDeLista(
+            @Query("nombreDeLista") String nombreDeLista
+    );
+
+    @GET("api/cuenta/obtenerImagenAlbum")
+    Call<Imagen> getImagenAlbum(
+            @Query("nombreCancion") String nombreCancion
+    );
+
 }

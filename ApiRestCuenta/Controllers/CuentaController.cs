@@ -104,6 +104,38 @@ namespace ApiRestCuenta.Controllers
         public IEnumerable<Cancion> getCanciones(){
             return context.Cancion.ToList();
         }
+
+        [HttpGet("obtenerImagenAlbum")]
+        public Imagen getImagenAlbum(string nombreCancion){
+
+            Console.WriteLine("Recuperando imagen");
+
+        var cancion = context.Cancion.Where(x => x.nombre == nombreCancion).Select(x=>x.Album_id).FirstOrDefault();
+        var album=context.Album.Where(X=> X.id == cancion).Select(x=>x.nombre).FirstOrDefault();
+        byte[] imagen;
+        byte[] buffer =null;
+        int longitud;
+        var PathfileName = string.Empty;
+
+        PathfileName = "/home/javier/Documentos/BasesDeDatos/Album/"+album+".jpg";
+
+        using (var fs = new FileStream(PathfileName, FileMode.Open, FileAccess.Read))
+        {
+            buffer = new byte[fs.Length];
+            fs.Read(buffer, 0, (int)fs.Length);
+            longitud = (int)fs.Length;
+        }
+
+        imagen=buffer;
+        string vuelta = Convert.ToBase64String(imagen);
+        Imagen imagen1 = new Imagen();
+        imagen1.imagen=vuelta;
+
+        return imagen1;
+
+        }
+
+
         // POST api/<controller>
         [HttpPost("registroCuenta")]
         public CuentaDAO Post([FromBody] CuentaDAO cuentaUsuario)
@@ -258,6 +290,97 @@ namespace ApiRestCuenta.Controllers
                 return BadRequest();
             }
 
+        }
+
+         [HttpPost("registroListaDeReproduccion")]
+       public ListaDeReproduccionSet PostListaDeReproduccion([FromBody] ListaDeReproduccionDAO listaDAO)
+       {
+           Console.WriteLine("Entro al servidor");
+           Console.WriteLine(listaDAO.Cuenta_id);
+           ListaDeReproduccionSet lista = new ListaDeReproduccionSet();
+           lista.Nombre = listaDAO.Nombre;
+           lista.Cuenta_id = listaDAO.Cuenta_id;
+           
+           try
+            {
+                context.ListaDeReproduccionSet.Add(lista);
+                context.SaveChanges();
+
+                return lista;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                
+                return lista;
+            }
+        }
+
+         [HttpGet("CancionesDeListaReproduccion")]
+        public IEnumerable<string> GetcancionesDeLista(string nombreDeLista)
+        {
+            Console.WriteLine("Entro a obtner canciones");
+            
+            List<string> listaCanciones = new List<string>();
+            
+            try{
+                var idLista = context.ListaDeReproduccionSet.Where(x => x.Nombre == nombreDeLista).Select(x => x.Id).FirstOrDefault();
+                var idCanciones = context.CancionListaDeReproduccion.Where(x => x.ListaDeReproduccion_Id == idLista).Select(x => x.cancion_id).ToList();
+
+                foreach(int idCancion in idCanciones){
+
+                var nombreDeCancion = context.Cancion.Where(x => x.id == idCancion).Select(x => x.nombre).FirstOrDefault();
+
+                listaCanciones.Add(nombreDeCancion);
+            }
+
+            return listaCanciones;
+
+            }catch(Exception ){
+
+                return listaCanciones;
+            }
+        }
+
+
+         [HttpGet("ObtenerListasDeReproduccion")]
+        public IEnumerable<string> GetListasDeReproduccion(int idCuenta)
+        {
+            List<string> litsav = new List<string>();
+            try{
+                var listas = context.ListaDeReproduccionSet.Where(x => x.Cuenta_id == idCuenta).Select(x=>x.Nombre).ToList();
+                return listas;
+
+            }catch(Exception e){
+
+                Console.WriteLine("Entro al catch: " + e.Message);
+                return litsav;
+            }
+        }
+
+        [HttpPost("ligarCancionConLista")]
+       public bool PostLigarLiastaConCancion(string nombreLista, string nombreCancion)
+       {
+           try
+           {
+               var idLista=context.ListaDeReproduccionSet.Where(x=>x.Nombre==nombreLista).Select(x=>x.Id).FirstOrDefault();
+               var idCancion=context.Cancion.Where(x=>x.nombre==nombreCancion).Select(x=>x.id).FirstOrDefault();
+               cancionListaDeReproduccion ligar = new cancionListaDeReproduccion();
+
+               ligar.cancion_id = idCancion;
+               ligar.ListaDeReproduccion_Id = idLista;
+
+                context.CancionListaDeReproduccion.Add(ligar);
+                context.SaveChanges();
+                Console.WriteLine("Se realizó");
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                
+                return false;
+            }
         }
     }
 }

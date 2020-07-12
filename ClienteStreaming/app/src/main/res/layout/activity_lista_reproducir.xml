@@ -19,7 +19,7 @@
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@drawable/abc_vector_test"
-            android:id="@+id/imageButton5"
+            android:id="@+id/botonVolver"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.055" app:layout_constraintVertical_bias="0.036"/>
@@ -28,5 +28,23 @@
             android:layout_height="390dp"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.495" app:layout_constraintVertical_bias="0.699"/>
+            app:layout_constraintVertical_bias="0.853" android:id="@+id/listaListas"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/nombreLista"
+            android:textColor="#FFFFFF" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.343"
+            app:layout_constraintVertical_bias="0.246"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@android:drawable/ic_menu_edit"
+            android:id="@+id/botonRegistrar"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.805" app:layout_constraintVertical_bias="0.248"
+            android:onClick="registrarLista"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

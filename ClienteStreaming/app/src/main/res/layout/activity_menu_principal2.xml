@@ -24,11 +24,11 @@
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.068"
             app:layout_constraintVertical_bias="0.046" android:onClick="volver"/>
     <ListView
-            android:layout_width="320dp"
-            android:layout_height="371dp"
+            android:layout_width="304dp"
+            android:layout_height="267dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.494" app:layout_constraintVertical_bias="0.797"
+            app:layout_constraintHorizontal_bias="0.495" app:layout_constraintVertical_bias="0.64"
             android:id="@+id/listaCanciones"/>
     <EditText
             android:layout_width="283dp"
@@ -47,4 +47,12 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.909" app:layout_constraintVertical_bias="0.202"
             android:onClick="obtenerCanciones"/>
+    <Button
+            android:text="Listas de reproduccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/botonListaReproduccion"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.498" app:layout_constraintVertical_bias="0.866"
+            android:onClick="listasReproduccion"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

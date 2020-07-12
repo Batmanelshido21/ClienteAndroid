@@ -8,7 +8,7 @@
         tools:context=".ListaReproduccion">
 
     <TextView
-            android:text="Lista de reproducción"
+            android:text="Listas Reproduccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView22"
             android:textColor="#FFFFFF"
@@ -21,42 +21,6 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.394" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:id="@+id/listaCanciones"/>
-    <ImageButton
-            android:layout_width="72dp"
-            android:layout_height="71dp" app:srcCompat="@android:drawable/ic_media_play"
-            android:id="@+id/imageButton"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.622" app:layout_constraintVertical_bias="0.896"/>
-    <ImageButton
-            android:layout_width="73dp"
-            android:layout_height="74dp" app:srcCompat="@android:drawable/ic_media_pause"
-            android:id="@+id/imageButton2"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.378" app:layout_constraintVertical_bias="0.901"/>
-    <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@android:drawable/ic_media_previous"
-            android:id="@+id/imageButton3"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.152" app:layout_constraintVertical_bias="0.904"/>
-    <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@android:drawable/ic_media_next"
-            android:id="@+id/imageButton4"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.839" app:layout_constraintVertical_bias="0.904"/>
-    <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="297dp"
-            android:layout_height="28dp"
-            android:id="@+id/progressBar2"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.77"/>
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@drawable/abc_vector_test"

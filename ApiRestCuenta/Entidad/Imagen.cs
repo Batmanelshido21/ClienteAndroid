@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace ApiRestCuenta.Entidad
 {
-    public class Audio
+    public class Imagen
     {
-        [Key]
-        public int id { get; set; }
-        public string cancion { get; set; }
-        public string imagen {get;set;}
+        public string imagen { get; set; }
     }
 }
