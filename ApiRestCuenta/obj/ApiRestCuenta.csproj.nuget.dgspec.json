@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\BETO\\Documents\\GitHub\\ClienteAndroid\\ApiRestCuenta\\ApiRestCuenta.csproj": {}
+    "/home/javier/Documentos/RepositoriosGithub/ProyectoAplicacionesEntregable/ClienteAndroid/ApiRestCuenta/ApiRestCuenta.csproj": {}
   },
   "projects": {
-    "C:\\Users\\BETO\\Documents\\GitHub\\ClienteAndroid\\ApiRestCuenta\\ApiRestCuenta.csproj": {
+    "/home/javier/Documentos/RepositoriosGithub/ProyectoAplicacionesEntregable/ClienteAndroid/ApiRestCuenta/ApiRestCuenta.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BETO\\Documents\\GitHub\\ClienteAndroid\\ApiRestCuenta\\ApiRestCuenta.csproj",
+        "projectUniqueName": "/home/javier/Documentos/RepositoriosGithub/ProyectoAplicacionesEntregable/ClienteAndroid/ApiRestCuenta/ApiRestCuenta.csproj",
         "projectName": "ApiRestCuenta",
-        "projectPath": "C:\\Users\\BETO\\Documents\\GitHub\\ClienteAndroid\\ApiRestCuenta\\ApiRestCuenta.csproj",
-        "packagesPath": "C:\\Users\\BETO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BETO\\Documents\\GitHub\\ClienteAndroid\\ApiRestCuenta\\obj\\",
+        "projectPath": "/home/javier/Documentos/RepositoriosGithub/ProyectoAplicacionesEntregable/ClienteAndroid/ApiRestCuenta/ApiRestCuenta.csproj",
+        "packagesPath": "/home/javier/.nuget/packages/",
+        "outputPath": "/home/javier/Documentos/RepositoriosGithub/ProyectoAplicacionesEntregable/ClienteAndroid/ApiRestCuenta/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\BETO\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/javier/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -69,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
         }
       }
     }

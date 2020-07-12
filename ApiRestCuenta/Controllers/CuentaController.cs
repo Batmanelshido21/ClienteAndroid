@@ -70,7 +70,7 @@ namespace ApiRestCuenta.Controllers
         int longitud;
         var PathfileName = string.Empty;
 
-        PathfileName = "C:/Users/BETO/Documents/"+nombreCancion+".mp3";
+        PathfileName = "/home/javier/Documentos/BasesDeDatos/Cancion/"+nombreCancion+".mp3";
 
         using (var fs = new FileStream(PathfileName, FileMode.Open, FileAccess.Read))
         {
@@ -121,9 +121,7 @@ namespace ApiRestCuenta.Controllers
             try
             {
                 byte[] bytesDeImagen = Convert.FromBase64String(cuentaUsuario.imagen);
-
-                Image imagenAGuardar = (Bitmap)((new ImageConverter()).ConvertFrom(bytesDeImagen));
-                imagenAGuardar.Save("C:/Users/BETO/Documents/" + cuentaUsuario.nombreUsuario + ".jpg", ImageFormat.Jpeg);
+                System.IO.File.WriteAllBytes("/home/javier/Documentos/BasesDeDatos/Cuenta/" + cuentaUsuario.nombreUsuario + ".jpg",bytesDeImagen);
 
                 context.Cuenta.Add(cuenta);
                 context.SaveChanges();
@@ -144,16 +142,13 @@ namespace ApiRestCuenta.Controllers
         public ArtistaSet PostArtista([FromBody] ArtistaDAO artistaDAO)
         {
             ArtistaSet artista = new ArtistaSet();
-            artista.id = artistaDAO.id;
             artista.NombreArtistico = artistaDAO.nombreArtistico;
             artista.Descripcion = artistaDAO.descripcion;
 
             try
             {
                 byte[] bytesDeImagen = Convert.FromBase64String(artistaDAO.imagen);
-
-                Image imagenAGuardar = (Bitmap)((new ImageConverter()).ConvertFrom(bytesDeImagen));
-                imagenAGuardar.Save("C:/Users/BETO/Documents/" + artistaDAO.nombreArtistico + ".jpg", ImageFormat.Jpeg);
+                System.IO.File.WriteAllBytes("/home/javier/Documentos/BasesDeDatos/Artista/" + artistaDAO.nombreArtistico + ".jpg",bytesDeImagen);
                 context.ArtistaSet.Add(artista);
                 context.SaveChanges();
 
@@ -184,9 +179,7 @@ namespace ApiRestCuenta.Controllers
             try
             {
                 byte[] bytesDeImagen = Convert.FromBase64String(albumDao.imagen);
-
-                Image imagenAGuardar = (Bitmap)((new ImageConverter()).ConvertFrom(bytesDeImagen));
-                imagenAGuardar.Save("C:/Users/BETO/Documents/" + albumDao.nombre + ".jpg", ImageFormat.Jpeg);
+                System.IO.File.WriteAllBytes("/home/javier/Documentos/BasesDeDatos/Album/" + albumDao.nombre + ".jpg",bytesDeImagen);
 
                 context.Album.Add(album);
                 context.SaveChanges();
@@ -216,9 +209,8 @@ namespace ApiRestCuenta.Controllers
             try
             {
                 Console.WriteLine("Entró al try");
-                byte[] bytes = System.Convert.FromBase64String(cancionSubida.audio);
-                System.IO.File.WriteAllBytes("C:/Users/BETO/Documents/" + cancionSubida.nombre + ".mp3",bytes);
-                context.Cancion.Add(cancion);
+                byte[] bytesDeImagen = Convert.FromBase64String(cancionSubida.audio);
+                System.IO.File.WriteAllBytes("/home/javier/Documentos/BasesDeDatos/Cancion/" +cancionSubida.nombre + ".mp3",bytesDeImagen);               context.Cancion.Add(cancion);
                 context.SaveChanges();
 
                 Console.WriteLine("registro cancion");

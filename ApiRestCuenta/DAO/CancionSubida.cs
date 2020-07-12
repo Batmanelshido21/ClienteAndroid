@@ -9,14 +9,6 @@ namespace ApiRestCuenta.DAO
  public class CancionSubida
     {
 
-        public CancionSubida(int id, string nombre,string genero,string duracion, int albumId){
-            this.id=id;
-            this.nombre=nombre;
-            this.genero=genero;
-            this.duracion=duracion;
-            this.idAlbum = albumId;
-        }
-
         public int id { get; set; }
         public string nombre { get; set; }
         public string genero { get; set; }

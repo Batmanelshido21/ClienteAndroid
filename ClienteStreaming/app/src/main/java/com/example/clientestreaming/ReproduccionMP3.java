@@ -47,7 +47,6 @@ public class ReproduccionMP3 extends AppCompatActivity {
     MediaPlayer mp;
     private String nombreCancion;
     byte[] byteArrray;
-    private Button descargar;
     private List<String> nombresDeCanciones = new ArrayList<>();
     int pos;
 
@@ -74,9 +73,9 @@ public class ReproduccionMP3 extends AppCompatActivity {
         pausar=(ImageButton)findViewById(R.id.pausar);
         nombreCancion=getIntent().getStringExtra("nombreCancion");
         play=(ImageButton)findViewById(R.id.reproductor);
-        descargar=(Button)findViewById(R.id.botonDescargar);
         nombresDeCanciones = (ArrayList<String>) getIntent().getSerializableExtra("miLista");
         pos = getIntent().getExtras().getInt("pos");
+        listaReproduccion= (Button)findViewById(R.id.botonListaR);
         reproducir(nombreCancion);
     }
 
@@ -96,8 +95,10 @@ public class ReproduccionMP3 extends AppCompatActivity {
         }
     }
 
-    public void guardarAudio(View view){
-
+    public void AgregarALista(View view){
+        Intent siguiente = new Intent(this,ListaReproduccion.class);
+        siguiente.putExtra("nombreCancion",nombresDeCanciones.get(pos));
+        startActivity(siguiente);
     }
 
     public void volver(View view){
@@ -116,7 +117,7 @@ public class ReproduccionMP3 extends AppCompatActivity {
 
     public void reproducir(String nombreCancion){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.66:5001/")
+                .baseUrl("http://192.168.0.15:5001/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IServicioLogin postService = retrofit.create(IServicioLogin.class);

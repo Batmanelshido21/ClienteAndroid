@@ -20,6 +20,9 @@ public class ListaReproduccion extends AppCompatActivity {
     private Window window;
     private ImageButton botonVolver;
     private ListView listaCanciones;
+    private String nombreCancion;
+    ArrayAdapter<String> adapter;
+    ArrayList<String> datos;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +35,21 @@ public class ListaReproduccion extends AppCompatActivity {
         window.setNavigationBarColor(Color.parseColor("#43a074"));
         botonVolver=(ImageButton)findViewById(R.id.botonV);
         listaCanciones=(ListView)findViewById(R.id.listaCanciones);
-        ArrayList<String> datos = new ArrayList<String>();
-        datos.add("Hola");
-        datos.add("Perro");
-        datos.add("Sucio");
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,datos);
-        listaCanciones.setAdapter(adapter);
+        nombreCancion=getIntent().getStringExtra("nombreCancion");
+        datos = new ArrayList<String>();
+
     }
 
     public void volver(View view){
         Intent siguiente = new Intent(this,InicioCreadorContenido.class);
         startActivity(siguiente);
+    }
+
+    public void obtenerListasReproduccion(){
+        datos.add("Hola");
+        datos.add("Perro");
+        datos.add("Sucio");
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,datos);
+        listaCanciones.setAdapter(adapter);
     }
 }

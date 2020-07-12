@@ -63,23 +63,18 @@
             app:layout_constraintHorizontal_bias="0.344" app:layout_constraintVertical_bias="0.758"
             android:onClick="pausar"/>
     <Button
-            android:text="Descargar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/botonDescargar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintVertical_bias="0.86" android:onClick="guardarAudio"/>
-    <Button
             android:text="Agregar a lista de reproducción"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/button5"
+            android:layout_height="wrap_content" android:id="@+id/botonListaR"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.496" app:layout_constraintVertical_bias="0.959"/>
+            app:layout_constraintHorizontal_bias="0.496" app:layout_constraintVertical_bias="0.959"
+            android:onClick="AgregarALista"/>
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@drawable/reproducir" android:id="@+id/imageView3"
-            tools:layout_editor_absoluteY="138dp" tools:layout_editor_absoluteX="77dp"
-            tools:ignore="MissingConstraints"/>
+            tools:ignore="MissingConstraints" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintVertical_bias="0.237"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

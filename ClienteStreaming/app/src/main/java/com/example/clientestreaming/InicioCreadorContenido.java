@@ -41,8 +41,12 @@ public class InicioCreadorContenido extends AppCompatActivity {
         startActivity(siguiente);
     }
 
+    public void terminarProceso(View view){
+        Intent siguiente = new Intent(this,InicioCreadorContenido.class);
+        startActivity(siguiente);
+    }
     public void registroAlbum(View view){
-        Intent siguiente = new Intent(this, RegistrarAlbum.class);
+        Intent siguiente = new Intent(this, ArtistasRegistrados.class);
         startActivity(siguiente);
     }
 

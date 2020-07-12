@@ -77,7 +77,7 @@ public class RegistroCanciones extends AppCompatActivity {
     }
 
     public void volver(View view){
-        Intent siguiente = new Intent(this,RegistrarAlbum.class);
+        Intent siguiente = new Intent(this,ArtistasRegistrados.class);
         startActivity(siguiente);
     }
 
@@ -140,7 +140,7 @@ public class RegistroCanciones extends AppCompatActivity {
         int id = (int) (Math.random() * 10000) + 1;
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.66:5001/")
+                .baseUrl("http://192.168.0.15:5001/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IServicioLogin postService = retrofit.create(IServicioLogin.class);

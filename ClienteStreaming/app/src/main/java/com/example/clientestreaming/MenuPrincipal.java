@@ -83,7 +83,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
         String nombre = String.valueOf(buscarTexto.getText());
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.66:5001/")
+                .baseUrl("http://192.168.0.15:5001/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IServicioLogin postService = retrofit.create(IServicioLogin.class);

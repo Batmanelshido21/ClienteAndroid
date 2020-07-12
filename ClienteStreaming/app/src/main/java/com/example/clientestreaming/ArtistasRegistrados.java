@@ -1,8 +1,11 @@
 package com.example.clientestreaming;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -25,21 +28,22 @@ public class ArtistasRegistrados extends AppCompatActivity {
     ArrayAdapter adapter;
     ArrayList<Integer> idArtistas = new ArrayList<>();
     int idArtista;
+    private Window window;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artistas_registrados);
-
+        this.window=getWindow();
+        window.setStatusBarColor(Color.parseColor("#0B0B0B"));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#43a074")));
+        window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#494949")));
+        window.setNavigationBarColor(Color.parseColor("#43a074"));
         listViewArtistas = (ListView)findViewById(R.id.listViewArtistas);
-
         nombreArtistas =  new  ArrayList<>();
         idArtistas =  new  ArrayList<>();
-
         Toast.makeText(this, "Seleccione a un artista para continuar", Toast.LENGTH_LONG).show();
-
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nombreArtistas);
-
         obtenerArtistas();
 
         listViewArtistas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -55,7 +59,7 @@ public class ArtistasRegistrados extends AppCompatActivity {
     public void obtenerArtistas(){
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.66:5001/")
+                .baseUrl("http://192.168.0.15:5001/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
