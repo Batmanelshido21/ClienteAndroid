@@ -103,6 +103,7 @@ public class InicioCreadorContenido extends AppCompatActivity {
                         datos.add(song.getNombre());
                     }
                     listaCanciones.setAdapter(adapter);
+                    adapter.clear();
 
                 } catch (Exception e) {
                     Log.e("Error",e.getMessage());
@@ -115,11 +116,15 @@ public class InicioCreadorContenido extends AppCompatActivity {
     }
     public void registroAlbum(View view){
         Intent siguiente = new Intent(this, ArtistasRegistrados.class);
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 
     public void listaReproduccion(View view){
         Intent siguiente = new Intent(this,ListaReproduccion.class);
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 

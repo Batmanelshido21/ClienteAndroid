@@ -131,6 +131,7 @@ public class ReproduccionMP3 extends AppCompatActivity {
     }
 
     public void AgregarALista(View view){
+        mp.pause();
         Intent siguiente = new Intent(this,ListaReproducir.class);
         siguiente.putExtra("nombreCancion",nombresDeCanciones.get(pos));
         siguiente.putExtra("tipo",tipo);

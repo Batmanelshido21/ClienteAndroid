@@ -132,7 +132,7 @@ public class ListaReproducir extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        Call<List<String>> call = postService.GetListasDeReproduccion(4654);
+        Call<List<String>> call = postService.GetListasDeReproduccion(idU);
 
         call.enqueue(new Callback<List<String>>() {
             @Override
@@ -142,6 +142,7 @@ public class ListaReproducir extends AppCompatActivity {
                         datos.add(nombre);
                     }
                     listas.setAdapter(adapter);
+                    adapter.clear();
                 } catch (Exception e) {
                     Log.e("Error",e.getMessage());
                 }
