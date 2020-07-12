@@ -56,6 +56,8 @@ public class RegistroCanciones extends AppCompatActivity {
     String s;
     int idAlbum;
 
+    String tipo;
+    int idU;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,12 +74,16 @@ public class RegistroCanciones extends AppCompatActivity {
         nombre=(TextView)findViewById(R.id.nombreCancionInput);
         genero=(TextView)findViewById(R.id.generoCancionInput);
         duracion=(TextView)findViewById(R.id.duracionInput);
+        tipo = getIntent().getStringExtra("tipo");
+        idU = getIntent().getExtras().getInt("id");
 
         idAlbum = getIntent().getIntExtra("idAlbum", 0);
     }
 
     public void volver(View view){
         Intent siguiente = new Intent(this,ArtistasRegistrados.class);
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 
@@ -124,6 +130,8 @@ public class RegistroCanciones extends AppCompatActivity {
 
     public void menuPrincipal(View view){
         Intent siguiente = new Intent(this,InicioCreadorContenido.class);
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 

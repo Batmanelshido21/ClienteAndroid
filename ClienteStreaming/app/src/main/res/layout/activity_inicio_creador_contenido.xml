@@ -39,21 +39,6 @@
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.079"
             app:layout_constraintVertical_bias="0.023" android:onClick="volverLogin"/>
-    <androidx.appcompat.widget.Toolbar
-            android:layout_width="409dp"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:theme="?attr/actionBarTheme"
-            android:minHeight="?attr/actionBarSize" android:id="@+id/toolbar2"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.13"/>
-    <SearchView
-            android:layout_width="376dp"
-            android:layout_height="47dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.457" app:layout_constraintVertical_bias="0.128"/>
     <Button
             android:text="Listas de reproducción"
             android:layout_width="153dp"
@@ -63,9 +48,26 @@
             app:layout_constraintVertical_bias="0.416"
             android:onClick="listaReproduccion"/>
     <ListView
-            android:layout_width="317dp"
-            android:layout_height="332dp"
+            android:layout_width="281dp"
+            android:layout_height="255dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.907"/>
+            app:layout_constraintVertical_bias="0.907" android:id="@+id/listaCanciones"/>
+    <EditText
+            android:layout_width="247dp"
+            android:layout_height="49dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/buscadorTexto" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.237"
+            app:layout_constraintVertical_bias="0.166"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@android:drawable/ic_menu_search"
+            android:id="@+id/buscarAudio"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.83" app:layout_constraintVertical_bias="0.167"
+            android:onClick="obtenerCanciones"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

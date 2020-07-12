@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call<ResponseService> call, Response<ResponseService> response) {
                     try {
                         user = response.body();
-
                         menuPrincipal(user.getTipo());
                     } catch (Exception e) {
                         Log.e("Error",e.getMessage());
@@ -101,9 +100,13 @@ public class MainActivity extends AppCompatActivity {
     public void menuPrincipal(String tipo){
         if(tipo.equalsIgnoreCase("creador")){
             Intent siguiente = new Intent(this,InicioCreadorContenido.class);
+            siguiente.putExtra("tipo",user.getTipo());
+            siguiente.putExtra("id",user.getId());
             startActivity(siguiente);
         }else{
             Intent siguiente = new Intent(this,MenuPrincipal.class);
+            siguiente.putExtra("tipo",user.getTipo());
+            siguiente.putExtra("id",user.getId());
             startActivity(siguiente);
         }
     }

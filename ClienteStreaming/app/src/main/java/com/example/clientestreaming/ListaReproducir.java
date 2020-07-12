@@ -1,14 +1,12 @@
 package com.example.clientestreaming;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import retrofit2.Call;
@@ -30,7 +28,9 @@ public class ListaReproducir extends AppCompatActivity {
     int pos;
     private TextView nombreLista;
     private String lista;
-
+    String tipo;
+    int idU;
+    private ImageButton volver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +44,9 @@ public class ListaReproducir extends AppCompatActivity {
         listas=(ListView)findViewById(R.id.listaListas);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,datos);
         nombreLista=(TextView)findViewById(R.id.nombreLista);
+        tipo = getIntent().getStringExtra("tipo");
+        idU = getIntent().getExtras().getInt("id");
+        volver = (ImageButton)findViewById(R.id.botonVolver);
         obtenerListas();
 
         listas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -53,6 +56,20 @@ public class ListaReproducir extends AppCompatActivity {
                 registrarCancionALista(lista,nombreCancion);
             }
         });
+    }
+
+    public void volverMenu(View view){
+        if(tipo.equalsIgnoreCase("usuario")){
+            Intent siguiente = new Intent(this,MenuPrincipal.class);
+            siguiente.putExtra("tipo",tipo);
+            siguiente.putExtra("id",idU);
+            startActivity(siguiente);
+        }else{
+            Intent siguiente = new Intent(this,InicioCreadorContenido.class);
+            siguiente.putExtra("tipo",tipo);
+            siguiente.putExtra("id",idU);
+            startActivity(siguiente);
+        }
     }
 
     public void registrarCancionALista(String lista,String nombreCancion){
@@ -89,7 +106,7 @@ public class ListaReproducir extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        ListaDeReproduccion lista = new ListaDeReproduccion(nombreDeLista,4654);
+        ListaDeReproduccion lista = new ListaDeReproduccion(nombreDeLista,idU);
         Call<ListaDeReproduccion> call = postService.PostListaDeReproduccion(lista);
 
         call.enqueue(new Callback<ListaDeReproduccion>() {

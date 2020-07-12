@@ -30,6 +30,8 @@ public class contenidoLista extends AppCompatActivity {
     String nombreCancion;
     private TextView nombreL;
     int pos;
+    String tipo;
+    int idU;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,8 @@ public class contenidoLista extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,datos);
         nombreL=(TextView)findViewById(R.id.nombreLista);
         nombreLista.setText(listaReproduccion);
+        tipo = getIntent().getStringExtra("tipo");
+        idU = getIntent().getExtras().getInt("id");
         obtenerCanciones();
 
         listaCanciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,6 +93,8 @@ public class contenidoLista extends AppCompatActivity {
         siguiente.putStringArrayListExtra("miLista", datos);;
         siguiente.putExtra("nombreCancion",nombreCancion);
         siguiente.putExtra("pos", pos);
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 

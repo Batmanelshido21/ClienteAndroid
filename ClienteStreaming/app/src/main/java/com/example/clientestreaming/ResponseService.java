@@ -1,6 +1,8 @@
 package com.example.clientestreaming;
 
-public class ResponseService {
+import java.io.Serializable;
+
+public class ResponseService implements Serializable {
 
     private Integer id;
     private String nombreUsuario;

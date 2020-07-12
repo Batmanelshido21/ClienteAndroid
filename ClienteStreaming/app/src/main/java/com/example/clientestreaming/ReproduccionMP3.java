@@ -49,6 +49,8 @@ public class ReproduccionMP3 extends AppCompatActivity {
     private List<String> nombresDeCanciones = new ArrayList<>();
     int pos;
      private ImageView image;
+     String tipo;
+     int idU;
 
 
     private ManagedChannel canal;
@@ -77,6 +79,9 @@ public class ReproduccionMP3 extends AppCompatActivity {
         pos = getIntent().getExtras().getInt("pos");
         listaReproduccion= (Button)findViewById(R.id.botonListaR);
         image =(ImageView)findViewById(R.id.imagenAlbum);
+        tipo = getIntent().getStringExtra("tipo");
+        idU = getIntent().getExtras().getInt("id");
+
         reproducir(nombreCancion);
     }
 
@@ -128,12 +133,16 @@ public class ReproduccionMP3 extends AppCompatActivity {
     public void AgregarALista(View view){
         Intent siguiente = new Intent(this,ListaReproducir.class);
         siguiente.putExtra("nombreCancion",nombresDeCanciones.get(pos));
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 
     public void volver(View view){
         mp.pause();
         Intent siguiente = new Intent(this,MenuPrincipal.class);
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 

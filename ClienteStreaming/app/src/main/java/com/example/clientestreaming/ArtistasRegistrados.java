@@ -29,7 +29,8 @@ public class ArtistasRegistrados extends AppCompatActivity {
     ArrayList<Integer> idArtistas = new ArrayList<>();
     int idArtista;
     private Window window;
-
+    String tipo;
+    int idU;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,8 @@ public class ArtistasRegistrados extends AppCompatActivity {
         idArtistas =  new  ArrayList<>();
         Toast.makeText(this, "Seleccione a un artista para continuar", Toast.LENGTH_LONG).show();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nombreArtistas);
+        tipo = getIntent().getStringExtra("tipo");
+        idU = getIntent().getExtras().getInt("id");
         obtenerArtistas();
 
         listViewArtistas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,6 +92,8 @@ public class ArtistasRegistrados extends AppCompatActivity {
     public  void desplegarRegistroDeAlbum(){
         Intent pantallaRegistrarAlbum = new Intent(this, RegistrarAlbum.class);
         pantallaRegistrarAlbum.putExtra("idArtista", idArtista);
+        pantallaRegistrarAlbum.putExtra("tipo",tipo);
+        pantallaRegistrarAlbum.putExtra("id",idU);
         startActivity(pantallaRegistrarAlbum);
     };
 }

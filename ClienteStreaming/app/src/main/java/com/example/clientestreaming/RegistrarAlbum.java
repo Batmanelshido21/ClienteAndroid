@@ -44,6 +44,8 @@ public class RegistrarAlbum extends AppCompatActivity {
     int idArtista;
     int idAlbum;
 
+    String tipo;
+    int idU;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,9 @@ public class RegistrarAlbum extends AppCompatActivity {
         nombre=(TextView)findViewById(R.id.nombreAlbumInput);
         fecha=(TextView)findViewById(R.id.fechaAlbumInput);
         descripcion=(TextView)findViewById(R.id.descripcionAlbumInput);
+        tipo = getIntent().getStringExtra("tipo");
+        idU = getIntent().getExtras().getInt("id");
+
 
         idArtista = getIntent().getExtras().getInt("idArtista");
 
@@ -68,6 +73,8 @@ public class RegistrarAlbum extends AppCompatActivity {
 
     public void volver(View view){
         Intent siguiente = new Intent(this,ArtistasRegistrados.class);
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 
@@ -124,7 +131,8 @@ public class RegistrarAlbum extends AppCompatActivity {
     public void registroCanciones(){
         Intent siguiente = new Intent(this, RegistroCanciones.class);
         siguiente.putExtra("idAlbum", idAlbum);
-
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 

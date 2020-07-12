@@ -32,6 +32,8 @@ public class ListaReproduccion extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ArrayList<String> datos;
     String listaReproduccion;
+    String tipo;
+    int idU;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class ListaReproduccion extends AppCompatActivity {
         listaCanciones=(ListView)findViewById(R.id.listaCanciones);
         datos = new ArrayList<String>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,datos);
+        tipo = getIntent().getStringExtra("tipo");
+        idU = getIntent().getExtras().getInt("id");
         obtenerListas();
 
         listaCanciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -60,12 +64,24 @@ public class ListaReproduccion extends AppCompatActivity {
     public void mostrarListas(String listaReproduccion){
         Intent siguiente = new Intent(this,contenidoLista.class);
         siguiente.putExtra("listaReproduccion",listaReproduccion);
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 
     public void volver(View view){
-        Intent siguiente = new Intent(this,InicioCreadorContenido.class);
-        startActivity(siguiente);
+        if(tipo.equalsIgnoreCase("usuario")){
+            Intent siguiente = new Intent(this,MenuPrincipal.class);
+            siguiente.putExtra("tipo",tipo);
+            siguiente.putExtra("id",idU);
+            startActivity(siguiente);
+        }else{
+            Intent siguiente = new Intent(this,InicioCreadorContenido.class);
+            siguiente.putExtra("tipo",tipo);
+            siguiente.putExtra("id",idU);
+            startActivity(siguiente);
+        }
+
     }
 
     private void obtenerListas() {
@@ -74,7 +90,7 @@ public class ListaReproduccion extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         IServicioLogin postService = retrofit.create(IServicioLogin.class);
-        Call<List<String>> call = postService.GetListasDeReproduccion(4654);
+        Call<List<String>> call = postService.GetListasDeReproduccion(idU);
 
         call.enqueue(new Callback<List<String>>() {
             @Override

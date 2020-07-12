@@ -35,6 +35,8 @@ public class RegistroUsuario extends AppCompatActivity {
     CheckBox tipo;
     TextView contra2;
     String imagenBase64;
+    String tipo2;
+    int idU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,8 @@ public class RegistroUsuario extends AppCompatActivity {
                     user = response.body();
                     Log.e("Se registró correctamente ",user.getNombreUsuario());
                     Log.e(" de correo electronico",user.getCorreoElectronico());
+                    tipo2=user.getTipo();
+                    idU=user.getId();
                     menuInicio(user.getTipo());
                 } catch (Exception e) {
                     Log.e("Error",e.getMessage());
@@ -125,9 +129,13 @@ public class RegistroUsuario extends AppCompatActivity {
     public void menuInicio(String tipo){
         if(tipo.equalsIgnoreCase("creador")){
             Intent siguiente = new Intent(this,InicioCreadorContenido.class);
+            siguiente.putExtra("tipo",tipo2);
+            siguiente.putExtra("id",idU);
             startActivity(siguiente);
         }else{
             Intent siguiente = new Intent(this,MenuPrincipal.class);
+            siguiente.putExtra("tipo",tipo2);
+            siguiente.putExtra("id",idU);
             startActivity(siguiente);
         }
     }

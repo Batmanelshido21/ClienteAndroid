@@ -39,6 +39,8 @@ public class MenuPrincipal extends AppCompatActivity {
     String nombreCancion;
     int pos;
     private Button botonListas;
+    private String tipo;
+    int idU;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -57,6 +59,8 @@ public class MenuPrincipal extends AppCompatActivity {
         botonBuscar=(ImageButton)findViewById(R.id.botonBuscar);
         botonListas=(Button)findViewById(R.id.botonListaReproduccion);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,datos);
+        tipo = getIntent().getStringExtra("tipo");
+        idU = getIntent().getExtras().getInt("id");
 
         listaCanciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -73,11 +77,15 @@ public class MenuPrincipal extends AppCompatActivity {
         siguiente.putStringArrayListExtra("miLista", datos);;
         siguiente.putExtra("nombreCancion",nombreCancion);
         siguiente.putExtra("pos", pos);
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 
     public void listasReproduccion(View view){
         Intent siguiente = new Intent(this,ListaReproduccion.class);
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 

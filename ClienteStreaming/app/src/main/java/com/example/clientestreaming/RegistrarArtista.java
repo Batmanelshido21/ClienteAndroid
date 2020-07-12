@@ -39,7 +39,8 @@ public class RegistrarArtista extends AppCompatActivity {
     Artista user;
 
     private String imagenBase64;
-
+    String tipo;
+    int idU;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +57,14 @@ public class RegistrarArtista extends AppCompatActivity {
         cargarImagen=(Button)findViewById(R.id.cargarImagen);
         nombreA=(TextView)findViewById(R.id.nombreArtisticoInput);
         descripcion=(TextView)findViewById(R.id.descripcionInput);
+        tipo = getIntent().getStringExtra("tipo");
+        idU = getIntent().getExtras().getInt("id");
     }
 
     public void volverInicio(View view){
         Intent siguiente = new Intent(this,InicioCreadorContenido.class);
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
         startActivity(siguiente);
     }
 
