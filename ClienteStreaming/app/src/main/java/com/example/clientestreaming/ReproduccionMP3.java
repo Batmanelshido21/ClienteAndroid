@@ -126,6 +126,7 @@ public class ReproduccionMP3 extends AppCompatActivity {
         if(pos < (nombresDeCanciones.size() -1)){
             pos++;
             Log.e("Nombre Cancion: ", nombresDeCanciones.get(pos));
+            nombreCancion=nombresDeCanciones.get(pos);
             reproducir(nombresDeCanciones.get(pos));
         }
     }
@@ -140,17 +141,26 @@ public class ReproduccionMP3 extends AppCompatActivity {
     }
 
     public void volver(View view){
-        mp.pause();
-        Intent siguiente = new Intent(this,MenuPrincipal.class);
-        siguiente.putExtra("tipo",tipo);
-        siguiente.putExtra("id",idU);
-        startActivity(siguiente);
+       if(tipo.equalsIgnoreCase("usuario")){
+           mp.pause();
+           Intent siguiente = new Intent(this,MenuPrincipal.class);
+           siguiente.putExtra("tipo",tipo);
+           siguiente.putExtra("id",idU);
+           startActivity(siguiente);
+       }else{
+           mp.pause();
+           Intent siguiente = new Intent(this,InicioCreadorContenido.class);
+           siguiente.putExtra("tipo",tipo);
+           siguiente.putExtra("id",idU);
+           startActivity(siguiente);
+       }
     }
 
     public void atrasarAudio(View view){
         if(pos >= 1){
             pos--;
             Log.e("Nombre Cancion: ", nombresDeCanciones.get(pos));
+            nombreCancion=nombresDeCanciones.get(pos);
             reproducir(nombresDeCanciones.get(pos));
         }
     }
