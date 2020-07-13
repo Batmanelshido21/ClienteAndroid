@@ -7,10 +7,7 @@ import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.ListView;
+import android.widget.*;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,7 +41,7 @@ public class ListaReproduccion extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#43a074")));
         window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#494949")));
         window.setNavigationBarColor(Color.parseColor("#43a074"));
-        botonVolver=(ImageButton)findViewById(R.id.botonV);
+        botonVolver=(ImageButton) findViewById(R.id.botonV);
         listaCanciones=(ListView)findViewById(R.id.listaCanciones);
         datos = new ArrayList<String>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,datos);
@@ -69,7 +66,8 @@ public class ListaReproduccion extends AppCompatActivity {
         startActivity(siguiente);
     }
 
-    public void volver(View view){
+    public void volverMenu(View view){
+
         if(tipo.equalsIgnoreCase("usuario")){
             Intent siguiente = new Intent(this,MenuPrincipal.class);
             siguiente.putExtra("tipo",tipo);
@@ -81,7 +79,6 @@ public class ListaReproduccion extends AppCompatActivity {
             siguiente.putExtra("id",idU);
             startActivity(siguiente);
         }
-
     }
 
     private void obtenerListas() {
@@ -99,6 +96,7 @@ public class ListaReproduccion extends AppCompatActivity {
                     for(String song : response.body()) {
                         datos.add(song);
                     }
+
                     Log.e("Texto","");
                     listaCanciones.setAdapter(adapter);
                 } catch (Exception e) {

@@ -52,7 +52,7 @@ public class ListaReproducir extends AppCompatActivity {
         listas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                lista=datos.get(pos);
+                lista=datos.get(i);
                 registrarCancionALista(lista,nombreCancion);
             }
         });
@@ -127,6 +127,7 @@ public class ListaReproducir extends AppCompatActivity {
     }
 
     public void obtenerListas(){
+        adapter.clear();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.15:5001/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -141,8 +142,9 @@ public class ListaReproducir extends AppCompatActivity {
                     for(String nombre : response.body()) {
                         datos.add(nombre);
                     }
+
                     listas.setAdapter(adapter);
-                    adapter.clear();
+
                 } catch (Exception e) {
                     Log.e("Error",e.getMessage());
                 }

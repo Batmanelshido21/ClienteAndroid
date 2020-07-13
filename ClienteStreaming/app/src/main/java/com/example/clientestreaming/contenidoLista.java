@@ -63,17 +63,10 @@ public class contenidoLista extends AppCompatActivity {
     }
 
     public void volver(View view){
-        if(tipo.equalsIgnoreCase("usuario")){
-            Intent siguiente = new Intent(this,MenuPrincipal.class);
-            siguiente.putExtra("tipo",tipo);
-            siguiente.putExtra("id",idU);
-            startActivity(siguiente);
-        }else{
-            Intent siguiente = new Intent(this,InicioCreadorContenido.class);
-            siguiente.putExtra("tipo",tipo);
-            siguiente.putExtra("id",idU);
-            startActivity(siguiente);
-        }
+        Intent siguiente = new Intent(this,ListaReproduccion.class);
+        siguiente.putExtra("tipo",tipo);
+        siguiente.putExtra("id",idU);
+        startActivity(siguiente);
     }
 
     private void obtenerCanciones() {

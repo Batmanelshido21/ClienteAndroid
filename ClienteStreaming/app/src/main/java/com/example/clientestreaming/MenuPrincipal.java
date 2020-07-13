@@ -95,6 +95,7 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     public void obtenerCanciones(View view){
+        adapter.clear();
         String nombre = String.valueOf(buscarTexto.getText());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.15:5001/")
@@ -107,11 +108,13 @@ public class MenuPrincipal extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<CancionRespuesta>> call, Response<List<CancionRespuesta>> response) {
                 try {
+
                     for(CancionRespuesta song : response.body()) {
                         datos.add(song.getNombre());
                     }
+
                     listaCanciones.setAdapter(adapter);
-                    adapter.clear();
+
 
                 } catch (Exception e) {
                     Log.e("Error",e.getMessage());

@@ -363,12 +363,18 @@ namespace ApiRestCuenta.Controllers
        {
            try
            {
+               Console.WriteLine("Entró "+nombreLista);
+               Console.WriteLine("Entro "+nombreCancion);
+               
+
                var idLista=context.ListaDeReproduccionSet.Where(x=>x.Nombre==nombreLista).Select(x=>x.Id).FirstOrDefault();
                var idCancion=context.Cancion.Where(x=>x.nombre==nombreCancion).Select(x=>x.id).FirstOrDefault();
                cancionListaDeReproduccion ligar = new cancionListaDeReproduccion();
 
                ligar.cancion_id = idCancion;
                ligar.ListaDeReproduccion_Id = idLista;
+               Console.WriteLine("Se obtuvo "+idCancion);
+               Console.WriteLine("Se obtuvo" +idLista);
 
                 context.CancionListaDeReproduccion.Add(ligar);
                 context.SaveChanges();
