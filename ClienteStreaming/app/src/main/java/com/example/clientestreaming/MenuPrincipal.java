@@ -117,12 +117,15 @@ public class MenuPrincipal extends AppCompatActivity {
 
 
                 } catch (Exception e) {
-                    Log.e("Error",e.getMessage());
+                   errorConexion();
                 }
             }
             @Override
             public void onFailure(Call<List<CancionRespuesta>> call, Throwable t) {
             }
         });
+    }
+    public void errorConexion(){
+        Toast.makeText(this, "No existen canciones",Toast.LENGTH_LONG).show();
     }
 }

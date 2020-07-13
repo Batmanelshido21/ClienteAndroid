@@ -108,13 +108,16 @@ public class InicioCreadorContenido extends AppCompatActivity {
 
 
                 } catch (Exception e) {
-                    Log.e("Error",e.getMessage());
+                    errorRespuesta();
                 }
             }
             @Override
             public void onFailure(Call<List<CancionRespuesta>> call, Throwable t) {
             }
         });
+    }
+    public void errorRespuesta(){
+        Toast.makeText(this, "No existe el usuario",Toast.LENGTH_LONG).show();
     }
     public void registroAlbum(View view){
         Intent siguiente = new Intent(this, ArtistasRegistrados.class);

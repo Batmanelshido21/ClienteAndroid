@@ -86,7 +86,7 @@ public class contenidoLista extends AppCompatActivity {
                     }
                     listaCanciones.setAdapter(adapter);
                 } catch (Exception e) {
-                    Log.e("Error",e.getMessage());
+                   errorRespuesta();
                 }
             }
             @Override
@@ -95,6 +95,9 @@ public class contenidoLista extends AppCompatActivity {
         });
     }
 
+    public void errorRespuesta(){
+        Toast.makeText(this, "No existen canciones",Toast.LENGTH_LONG).show();
+    }
     public void cambioPantalla(String nombreCancion){
         Intent siguiente = new Intent(this,ReproduccionMP3.class);
         siguiente.putStringArrayListExtra("miLista", datos);;

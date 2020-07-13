@@ -100,13 +100,17 @@ public class ListaReproduccion extends AppCompatActivity {
                     Log.e("Texto","");
                     listaCanciones.setAdapter(adapter);
                 } catch (Exception e) {
-                    Log.e("Error",e.getMessage());
+                    errorRespuesta();
                 }
             }
             @Override
             public void onFailure(Call<List<String>> call, Throwable t) {
             }
         });
+    }
+
+    public void errorRespuesta(){
+        Toast.makeText(this, "No existen listas de reproducción",Toast.LENGTH_LONG).show();
     }
 
 }

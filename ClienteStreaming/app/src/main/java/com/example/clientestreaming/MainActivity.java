@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 @Override
                 public void onFailure(Call<ResponseService> call, Throwable t) {
+                   errorEjecucion();
                 }
             });
 
@@ -97,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void errorEjecucion(){
+        Toast.makeText(this, "Error de autenticacion",Toast.LENGTH_LONG).show();
+    }
     public void menuPrincipal(String tipo){
         if(tipo.equalsIgnoreCase("creador")){
             Intent siguiente = new Intent(this,InicioCreadorContenido.class);

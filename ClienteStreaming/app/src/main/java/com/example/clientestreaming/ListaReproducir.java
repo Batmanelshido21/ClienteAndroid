@@ -96,7 +96,11 @@ public class ListaReproducir extends AppCompatActivity {
     }
 
     public void registrarLista(View view){
-        registroLista();
+        if(nombreLista!=null) {
+            registroLista();
+        }else{
+            Toast.makeText(this, "No se pueden dejar campos vacios",Toast.LENGTH_LONG).show();
+        }
     }
 
     private void registroLista() {
